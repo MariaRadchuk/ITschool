@@ -10,10 +10,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'index.html'),
-        programs: path.resolve(__dirname, 'pages/programs.html'),
-        council: path.resolve(__dirname, 'pages/council.html'),
-        access: path.resolve(__dirname, 'pages/access.html'),
-        notfound: path.resolve(__dirname, '404.html'),
       },
     },
   },
