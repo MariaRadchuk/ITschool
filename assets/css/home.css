@@ -108,55 +108,9 @@ body {
   cursor: pointer;
 }
 
-/* ================== TERMINAL ================== */
-.terminal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 800px;
-  background: #000;
-  border: 2px solid rgba(139, 0, 255, 0.4);
-  border-radius: 32px;
-  box-shadow: 0 0 60px rgba(139, 0, 255, 0.3);
-  z-index: 999;
-  transition: all 1.5s ease;
-}
-
-.terminal.hide {
-  transform: translate(-50%, -50%) scale(0.9);
-  opacity: 0;
-}
-
-.terminal-header {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #333;
-  color: #808080;
-  font: 700 0.9rem "JetBrains Mono", monospace;
-}
-
-.terminal-body {
-  padding: 2.5rem 2rem;
-  text-align: center;
-}
-
-.terminal-body pre {
-  font: 2.2rem "JetBrains Mono", monospace;
-  color: #808080;
-}
-
-#typing {
-  color: #8b00ff;
-  animation: blink 1s infinite;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-
 /* ================== HERO ================== */
 .hero {
-  min-height: 100vh;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,6 +119,7 @@ body {
   padding: 0 5%;
   opacity: 0;
   transition: opacity 1.8s ease;
+  margin-top: 100px;
 }
 
 .hero.active {
@@ -245,12 +200,6 @@ body {
   transform: translateY(0);
 }
 
-.track-card:hover {
-  border-color: #8b00ff;
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(139, 0, 255, 0.15);
-}
-
 .track-card h3 {
   font: 700 1.6rem "JetBrains Mono", monospace;
   color: #8b00ff;
@@ -272,13 +221,22 @@ body {
 }
 
 .badge {
-  display: inline-block;
-  background: #222;
-  color: #8b00ff;
-  padding: 0.5rem 1.3rem;
-  border: 1px solid #8b00ff;
+  padding: 0.8rem 2rem;
+  font: 600 1rem "JetBrains Mono", monospace;
+  background: transparent;
+  border: 2px solid #808080;
   border-radius: 8px;
-  font: 600 0.85rem "JetBrains Mono", monospace;
+  color: #808080;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.track-card:hover .badge {
+  border-color: #8b00ff;
+  color: #8b00ff;
+  background: rgba(139, 0, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
 }
 
 /* ================== FOOTER ================== */
@@ -286,7 +244,6 @@ body {
   background: #0a0a0a;
   border-top: 1px solid #333;
   padding: 4rem 6% 2rem;
-  margin-top: 10rem;
 }
 
 .footer-content {
@@ -357,33 +314,6 @@ body {
   }
 }
 
-/* Плавний курсор — без лагів */
-.cursor {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  pointer-events: none;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-}
-
-.cursor::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="%238B00FF" d="M16 2 L18 12 L24 2 L20 14 L30 10 L18 16 L30 22 L20 18 L24 30 L18 20 L16 30 L14 20 L8 30 L12 18 L2 22 L14 16 L2 10 L12 14 L8 2 L14 12 Z"/></svg>')
-    center/contain no-repeat;
-  filter: drop-shadow(0 0 15px #8b00ff);
-}
-
-.cursor.active::before {
-  transform: scale(1.4);
-  filter: drop-shadow(0 0 30px #8b00ff);
-}
-
 /* ================== АДАПТИВ ================== */
 @media (max-width: 1024px) {
   .track-card {
@@ -441,10 +371,6 @@ body {
     padding: 1.2rem 3rem;
     font-size: 1.3rem;
   }
-  .terminal-body {
-    font-size: 1.6rem;
-    padding: 2rem 1rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -463,8 +389,5 @@ body {
   }
   .track-card {
     padding: 2rem 1.5rem;
-  }
-  .terminal-body {
-    font-size: 1.3rem;
   }
 }
