@@ -1,0 +1,181 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // ==================== MATRIX RAIN ====================
+  const canvas = document.getElementById('matrix');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const runes = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟᚾᛉᛊᛏᚠᚢᚦᚨ'.split('');
+    const fontSize = 18;
+    let columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    const drawMatrix = () => {
+      ctx.fillStyle = 'rgba(128, 128, 128, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = `${fontSize}px 'Uncial Antiqua', monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const rune = runes[Math.floor(Math.random() * runes.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillStyle = '#000000';
+        ctx.shadowColor = 'transparent';
+        ctx.fillText(rune, x, y);
+
+        if (i % 12 === 0 && Math.random() > 0.97) {
+          ctx.fillStyle = '#D4AF37';
+          ctx.shadowColor = '#D4AF37';
+          ctx.shadowBlur = 25;
+          ctx.fillText(rune, x, y);
+          ctx.shadowBlur = 0;
+        }
+
+        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    };
+
+    setInterval(drawMatrix, 50);
+  }
+
+  // ==================== HERO & TRACKS АНІМАЦІЯ ====================
+  const hero = document.getElementById('hero');
+  if (hero) hero.style.opacity = '1';
+
+  const tracks = document.querySelector('.tracks');
+  if (tracks) {
+    tracks.classList.add('active');
+    document.querySelectorAll('.track-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('visible'), i * 250);
+    });
+  }
+
+  // ==================== КНОПКА "ENTER THE VOID" ====================
+  const enterBtn = document.getElementById('enter-btn');
+  enterBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const tracksSection = document.querySelector('.tracks');
+    const header = document.querySelector('.arcane-header');
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    if (tracksSection) {
+      window.scrollTo({
+        top: tracksSection.offsetTop - headerHeight - 10,
+        behavior: 'smooth'
+      });
+    }
+  });
+
+  // ==================== БУРГЕР-МЕНЮ ====================
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.header-nav');
+  burger?.addEventListener('click', () => {
+    nav?.classList.toggle('active');
+    burger.classList.toggle('active');
+  });
+
+  // ==================== КУРСОР ====================
+// ==================== КУРСОР — ПЛАВНИЙ, БЕЗ ГЛЮКІВ ====================
+const cursor = document.querySelector('.cursor');
+if (cursor) {
+  document.body.style.cursor = 'none';
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  const speed = 0.15; // Чим менше — тим плавніше
+
+  const updateCursor = () => {
+    cursorX += (mouseX - cursorX) * speed;
+    cursorY += (mouseY - cursorY) * speed;
+    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    requestAnimationFrame(updateCursor);
+  };
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // Активний стан (на посиланнях, кнопках)
+  document.querySelectorAll('a, button, .burger, .track-card[data-path], .dominion-card, .altar-close').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+  });
+
+  // Запуск анімації
+  updateCursor();
+}
+
+  // ==================== ПЛАВНИЙ СКРОЛ ПО ЯКОРЯМ ====================
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ==================== АНІМАЦІЯ КАРТОК ПРИ СКРОЛІ ====================
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.track-card, .dominion-card').forEach(card => {
+    observer.observe(card);
+  });
+
+  // ==================== ПЕРЕХІД З ГОЛОВНОЇ НА ШЛЯХИ ====================
+  document.querySelectorAll('.track-card[data-path]').forEach(card => {
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', () => {
+      const path = card.dataset.path;
+      window.location.href = path;
+    });
+
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-10px) scale(1.03)';
+      card.style.boxShadow = '0 20px 40px rgba(139, 0, 255, 0.3)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+
+  // ==================== АВТОМАТИЧНА АКТИВНА НАВІГАЦІЯ ====================
+  (() => {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.header-nav a[data-page]');
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const page = link.getAttribute('data-page');
+
+      const isCurrentPage = 
+        (page === 'home' && (currentPath === '/' || currentPath.endsWith('/index.html'))) ||
+        (page !== 'home' && currentPath.includes(href));
+
+      if (isCurrentPage) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  })();
+});
