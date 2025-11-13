@@ -1,28 +1,9 @@
-import { defineConfig } from 'vite'
-import path from 'path'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: '.', // корінь проєкту
-  publicDir: 'pages', // папка для статичних ресурсів
+  root: 'src',
   build: {
-    outDir: 'dist', // папка для продакшену
-    sourcemap: true, // для дебагу
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-      },
-    },
+    outDir: '../dist',
+    emptyOutDir: true,
   },
-  server: {
-    port: 5173, // стандартний порт для Vite
-    open: true, // відкриває браузер автоматично
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'assets'), // зручний alias для assets
-    },
-  },
-  css: {
-    devSourcemap: true, // для дебагу CSS
-  },
-})
+});

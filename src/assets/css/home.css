@@ -1,0 +1,194 @@
+/* Залиш тільки стилі для головної сторінки */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === HERO === */
+.hero {
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 5%;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  margin-top: 100px;
+}
+
+.hero.active {
+  opacity: 1;
+}
+
+.hero h1 {
+  font: 500 clamp(3rem, 6vw, 5rem) "JetBrains Mono", monospace;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+}
+
+.line {
+  display: block;
+  color: #555;
+}
+.neon {
+  color: #8b00ff;
+  text-shadow: 0 0 30px #8b00ff;
+}
+
+/* === BUTTON === */
+.enter-btn {
+  margin-top: 20px;
+  padding: 1.5rem 4rem;
+  font: 700 1.5rem "JetBrains Mono", monospace;
+  background: transparent;
+  border: 2px solid #808080;
+  color: #808080;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.enter-btn:hover {
+  border-color: #8b00ff;
+  color: #8b00ff;
+  background: rgba(139, 0, 255, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(139, 0, 255, 0.25);
+}
+
+/* === TRACKS === */
+.tracks {
+  padding: 8rem 5% 6rem;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.tracks.active {
+  opacity: 1;
+}
+
+.tracks-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.track-card {
+  width: 340px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.track-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.track-card h3 {
+  font: 700 1.6rem "JetBrains Mono", monospace;
+  color: #8b00ff;
+  margin-bottom: 1rem;
+}
+
+.stack {
+  color: #d4af37;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+.desc {
+  color: #aaa;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.badge {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  font: 600 1rem "JetBrains Mono", monospace;
+  background: transparent;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  color: #808080;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+.track-card:hover .badge {
+  border-color: #8b00ff;
+  color: #8b00ff;
+  background: rgba(139, 0, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
+}
+
+/* Клікабельні картки */
+.track-card[data-path] {
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.track-card[data-path]:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: #8b00ff;
+  box-shadow: 0 20px 40px rgba(139, 0, 255, 0.3);
+}
+
+.track-card[data-path]:hover h3 {
+  color: #8b00ff;
+  text-shadow: 0 0 15px #8b00ff;
+}
+
+/* Адаптив */
+@media (max-width: 1024px) {
+  .track-card {
+    width: 300px;
+  }
+  .tracks-container {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .track-card {
+    width: 90%;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  .enter-btn {
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  .enter-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  .track-card {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcane Code | Рівень 02 — Шляхи</title>
+
+    <!-- Стилі -->
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/paths.css" />
+
+    <!-- Шрифти -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="arcane-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="header-nav">
+          <a href="/" data-page="home">01 Пробудження</a>
+          <a href="/pages/paths.html" data-page="paths">02 Шляхи</a>
+          <a href="/pages/council.html" data-page="council">03 Рада</a>
+          <a href="/pages/access.html" data-page="access">04 Контакти</a>
+        </nav>
+        <div class="burger">☰</div>
+      </div>
+    </header>
+
+    <!-- Герой -->
+    <section class="paths-hero">
+      <div class="hero-content">
+        <h1>
+          <span class="line">ШЛЯХИ</span>
+          <span class="line neon">ВИБРАНИХ</span>
+        </h1>
+        <p class="subtitle">Три Домініони. Шість Клинків. Один ти.</p>
+      </div>
+      <!-- Кнопка — ближче до заголовка -->
+      <div class="paths-cta">
+        <button class="cta-btn" id="scroll-to-dominions">
+          <span>ОБЕРИ СВІЙ ШЛЯХ</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Домініони -->
+    <section class="dominions">
+      <div class="dominions-container">
+        <!-- FRONTEND DOMINION -->
+        <div class="dominion-card" data-dominion="frontend">
+          <div class="dominion-glow"></div>
+          <h3>FRONTEND DOMINION</h3>
+          <p class="tagline">Портали в безсмертя</p>
+          <div class="rune">ᚠᚢᚦ</div>
+        </div>
+
+        <!-- BACKEND FORTRESS -->
+        <div class="dominion-card" data-dominion="backend">
+          <div class="dominion-glow"></div>
+          <h3>BACKEND FORTRESS</h3>
+          <p class="tagline">Моноліти, що не падають</p>
+          <div class="rune">ᚱᚲᚷ</div>
+        </div>
+
+        <!-- FULLSTACK EMPIRE -->
+        <div class="dominion-card" data-dominion="fullstack">
+          <div class="dominion-glow"></div>
+          <h3>FULLSTACK EMPIRE</h3>
+          <p class="tagline">Імперії, що панують</p>
+          <div class="rune">ᚹᚺᚾ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Вівтарі — тепер окремі, з’являються тільки по кліку -->
+    <section class="altars">
+      <!-- FRONTEND ALTAR -->
+      <div class="altar" id="frontend-altar" data-dominion="frontend">
+        <div class="altar-content">
+          <div class="altar-title">FRONTEND DOMINION</div>
+          <div class="blades">
+            <div class="blade-card">
+              <h4>Клинок Перший: Реактивний Розлом</h4>
+              <p class="stack">
+                React 19 → Zustand → Signals → Three.js + WebGL
+              </p>
+              <p class="desc">Портфоліо, що ламає 4090. 120 FPS. 60k+ зірок.</p>
+              <div class="badge">12 тижнів</div>
+            </div>
+            <div class="blade-card">
+              <h4>Клинок Другий: Портал Безсмертя</h4>
+              <p class="stack">Next.js 15 + RSC + Edge + GSAP + Framer</p>
+              <p class="desc">Сайт-легенда. Awwwards «Site of the Year».</p>
+              <div class="badge">14 тижнів</div>
+            </div>
+          </div>
+          <button class="altar-close">×</button>
+        </div>
+      </div>
+
+      <!-- BACKEND ALTAR -->
+      <div class="altar" id="backend-altar" data-dominion="backend">
+        <div class="altar-content">
+          <div class="altar-title">BACKEND FORTRESS</div>
+          <div class="blades">
+            <div class="blade-card">
+              <h4>Клинок Перший: Пекельний Язик</h4>
+              <p class="stack">Rust + Actix + Tokio + SQLx + WASM</p>
+              <p class="desc">API: 0.4 мс. 1M rps. Без простоїв.</p>
+              <div class="badge">10 тижнів</div>
+            </div>
+            <div class="blade-card">
+              <h4>Клинок Другий: Тіньовий Моноліт</h4>
+              <p class="stack">Node 22 + Bun + Edge + Redis + Kafka</p>
+              <p class="desc">SaaS: від 0 до $25k MRR за 90 днів.</p>
+              <div class="badge">11 тижнів</div>
+            </div>
+          </div>
+          <button class="altar-close">×</button>
+        </div>
+      </div>
+
+      <!-- FULLSTACK ALTAR -->
+      <!-- FULLSTACK ALTAR -->
+      <div class="altar" id="fullstack-altar" data-dominion="fullstack">
+        <div class="altar-content">
+          <div class="altar-title">FULLSTACK EMPIRE</div>
+          <div class="blades">
+            <div class="blade-card">
+              <h4>Клинок Перший: Трон Турбореакт</h4>
+              <p class="stack">
+                T3 Stack + Next.js 15 + tRPC + Prisma + Tailwind
+              </p>
+              <p class="desc">Свій Vercel. Свій edge. Свій закон.</p>
+              <div class="badge">16 тижнів</div>
+            </div>
+            <div class="blade-card">
+              <h4>Клинок Другий: Закон Абсолюту</h4>
+              <p class="stack">Fullstack + AI Agents + Cursor.sh + Claude</p>
+              <p class="desc">Ти не пишеш код. Ти наказуєш.</p>
+              <div class="badge">18 тижнів</div>
+            </div>
+          </div>
+          <button class="altar-close">×</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="arcane-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="/">01 Пробудження</a>
+          <a href="/pages/paths.html">02 Шляхи</a>
+          <a href="/pages/council.html">03 Рада</a>
+          <a href="/pages/access.html">04 Контакти</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          © 1666–2025 <span class="gold">Орден Дев’яти</span>
+        </p>
+        <p class="runes">ᚠᚢᚦᚨᚱᚲ • ᚷᚹᚺᚾᛁᛃ • ᛈᛉᛊᛏᛒᛖᛗ</p>
+      </div>
+    </footer>
+
+    <!-- Матриця -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Кастомний курсор -->
+    <div class="cursor"></div>
+
+    <!-- JS -->
+    <script type="module" src="/assets/js/global.js"></script>
+    <script type="module" src="/assets/js/paths.js"></script>
+  </body>
+</html>

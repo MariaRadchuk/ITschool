@@ -1,0 +1,353 @@
+/* === HERO === */
+.paths-hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 5%;
+  margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; /* Заголовок → Підзаголовок → Кнопка */
+}
+
+.paths-hero h1 {
+  font: 500 clamp(3.5rem, 7vw, 6rem) "JetBrains Mono", monospace;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.paths-hero .line {
+  display: block;
+}
+
+.paths-hero .neon {
+  color: #8b00ff;
+  text-shadow: 0 0 30px #8b00ff;
+}
+
+.subtitle {
+  font: 600 1.3rem "Inter", sans-serif;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* === CTA КНОПКА — БЛИЗЬКО ДО ЗАГОЛОВКА === */
+.paths-cta {
+  margin: 0;
+  padding: 0;
+}
+
+.cta-btn {
+  padding: 1.2rem 3.5rem;
+  font: 700 1.4rem "JetBrains Mono", monospace;
+  background: transparent;
+  border: 2px solid #808080;
+  color: #808080;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 40px;
+}
+
+.cta-btn span {
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  border-color: #8b00ff;
+  color: #8b00ff;
+  background: rgba(139, 0, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(139, 0, 255, 0.25);
+}
+
+.cta-btn:hover span {
+  text-shadow: 0 0 12px #8b00ff;
+}
+
+/* === DOMINIONS === */
+.dominions {
+  padding: 6rem 5% 4rem;
+  position: relative;
+}
+
+.dominions-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dominion-card {
+  width: 340px;
+  height: 400px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.dominion-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dominion-card:hover {
+  transform: translateY(-20px) scale(1.05);
+  border-color: var(--glow-color, #8b00ff);
+  box-shadow: 0 30px 60px rgba(139, 0, 255, 0.3);
+}
+
+.dominion-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    var(--glow-color, #8b00ff) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.dominion-card:hover .dominion-glow {
+  opacity: 0.2;
+}
+
+.dominion-card h3 {
+  font: 700 1.8rem "JetBrains Mono", monospace;
+  color: var(--glow-color, #8b00ff);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px var(--glow-color, #8b00ff);
+}
+
+.tagline {
+  color: #aaa;
+  font-size: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.rune {
+  font: 700 4rem "Uncial Antiqua", cursive;
+  color: #333;
+  text-shadow: 0 0 20px var(--glow-color, #8b00ff);
+  transition: all 0.6s ease;
+}
+
+.dominion-card:hover .rune {
+  color: var(--glow-color, #8b00ff);
+  text-shadow: 0 0 40px var(--glow-color, #8b00ff);
+  transform: scale(1.2);
+}
+
+/* === ALTARS === */
+.altars {
+  padding: 4rem 5%;
+  position: relative;
+}
+
+.altar {
+  display: none;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  max-width: 1000px;
+  margin: 6rem auto;
+  background: #0a0a0a;
+  border: 1px solid #333;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.altar.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.altar-content {
+  position: relative;
+  padding: 3rem;
+}
+
+.altar-title {
+  font: 700 2.2rem "JetBrains Mono", monospace;
+  color: var(--glow-color, #8b00ff);
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 20px var(--glow-color, #8b00ff);
+}
+
+.altar-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  font: 700 2.5rem "Inter", sans-serif;
+  color: #666;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.altar-close:hover {
+  color: #ff0044;
+  transform: scale(1.2);
+}
+
+/* === BLADES === */
+.blades {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.blade-card {
+  width: 380px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.blade-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blade-card h4 {
+  font: 700 1.5rem "JetBrains Mono", monospace;
+  color: var(--glow-color, #8b00ff);
+  margin-bottom: 1rem;
+}
+
+.blade-card .stack {
+  color: #d4af37;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.blade-card .desc {
+  color: #aaa;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.blade-card .badge {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  font: 600 1rem "JetBrains Mono", monospace;
+  background: transparent;
+  border: 1px solid var(--glow-color, #8b00ff);
+  border-radius: 8px;
+  color: var(--glow-color, #8b00ff);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.blade-card:hover .badge {
+  background: rgba(139, 0, 255, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
+}
+
+/* === КОЛЬОРИ ДЛЯ ДОМІНІОНІВ === */
+[data-dominion="frontend"] {
+  --glow-color: #8b00ff;
+}
+[data-dominion="backend"] {
+  --glow-color: #d4af37;
+}
+[data-dominion="fullstack"] {
+  --glow-color: #ff0044;
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 1024px) {
+  .dominion-card {
+    width: 300px;
+    height: 360px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    gap: 1.2rem;
+  }
+  .cta-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+  }
+  .dominion-card {
+    width: 90%;
+    height: auto;
+    padding: 2.5rem 2rem;
+  }
+  .blade-card {
+    width: 100%;
+  }
+  .altar-content {
+    padding: 2rem;
+  }
+  .altar-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .paths-hero h1 {
+    font-size: 2.8rem;
+  }
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  .cta-btn {
+    padding: 0.9rem 2.5rem;
+    font-size: 1.1rem;
+  }
+  .altar-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+  }
+}
