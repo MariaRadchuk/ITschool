@@ -8,9 +8,5 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
   },
-
-  // Автоматично визначає хостинг
-  base: process.env.NODE_ENV === 'production'
-    ? (process.env.VERCEL ? '/' : '/ITschool/') // Vercel → '/', GitHub Pages → '/ITschool/'
-    : '/',
+  base: '/ITschool/',
 });
