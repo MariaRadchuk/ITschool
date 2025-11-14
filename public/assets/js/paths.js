@@ -259,24 +259,24 @@ window.addEventListener('load', () => {
   }
 });
 
-  // ══════════════════════════════════════
-  // 6. КНОПКА "ОБЕРИ СВІЙ ШЛЯХ"
-  // ══════════════════════════════════════
-  const scrollBtn = document.getElementById('scroll-to-dominions');
-  if (scrollBtn) {
-    scrollBtn.addEventListener('click', () => {
-      const dominionsSection = document.querySelector('.dominions');
-      const header = document.querySelector('.arcane-header');
-      const headerHeight = header ? header.offsetHeight : 0;
+// ══════════════════════════════════════
+// 6. КНОПКА "ОБЕРИ СВІЙ ШЛЯХ" — ПЕРЕХІД ДО ДОМІНІОНІВ
+// ══════════════════════════════════════
+const scrollBtn = document.getElementById('scroll-to-architects'); // ← НОВИЙ ID!
+if (scrollBtn) {
+  scrollBtn.addEventListener('click', () => {
+    const dominionsSection = document.querySelector('.dominions');
+    const header = document.querySelector('.arcane-header');
+    const headerHeight = header ? header.offsetHeight : 0;
 
-      if (dominionsSection) {
-        window.scrollTo({
-          top: dominionsSection.offsetTop - headerHeight - 20,
-          behavior: 'smooth'
-        });
-      }
-    });
-  }
+    if (dominionsSection) {
+      window.scrollTo({
+        top: dominionsSection.offsetTop - headerHeight - 20,
+        behavior: 'smooth'
+      });
+    }
+  });
+}
 
   // ══════════════════════════════════════
   // КІНЕЦЬ. ТИ — У ТЕМРЯВІ.

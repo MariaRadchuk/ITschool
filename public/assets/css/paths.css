@@ -53,7 +53,7 @@
   padding: 0;
 }
 
-.cta-btn {
+/* .cta-btn {
   padding: 1.2rem 3.5rem;
   font: 700 1.4rem "JetBrains Mono", monospace;
   background: transparent;
@@ -82,7 +82,7 @@
 
 .cta-btn:hover span {
   text-shadow: 0 0 12px #8b00ff;
-}
+} */
 
 /* ══════════════════════════════════════
    2. DOMINIONS — Три Вівтарі

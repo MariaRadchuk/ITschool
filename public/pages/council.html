@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcane Code | Рівень 03 — Рада</title>
+
+    <!-- Стилі -->
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/home.css" />
+    <link rel="stylesheet" href="/assets/css/council.css" />
+
+    <!-- Шрифти -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-page="council">
+    <!-- Header -->
+    <header class="arcane-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="header-nav">
+          <a href="/" data-page="home">01 Пробудження</a>
+          <a href="/pages/paths.html" data-page="paths">02 Шляхи</a>
+          <a href="/pages/council.html" data-page="council">03 Рада</a>
+          <a href="/pages/access.html" data-page="access">04 Контакти</a>
+        </nav>
+        <div class="burger">☰</div>
+      </div>
+    </header>
+
+    <!-- Герой — Зала Ради -->
+    <section class="council-hero">
+      <div class="hero-content">
+        <h1>
+          <span class="line">РАДА</span>
+          <span class="line neon">ОРДЕНУ ДЕВ'ЯТИ</span>
+        </h1>
+        <p class="subtitle">Дев'ятеро Архітекторів. Три Шляхи. Один Орден.</p>
+      </div>
+
+      <!-- КНОПКА — ПЕРЕХІД ДО МЕНТОРІВ -->
+      <div class="council-cta">
+        <button class="enter-btn" id="scroll-to-architects">
+          <span>ОБЕРИ СВІЙ ШЛЯХ</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 9 Архітекторів — Голограми -->
+    <section class="council-architects">
+      <div class="architects-container">
+        <!-- ЗАСНОВНИКИ (3) — ПОЗА КУРСАМИ -->
+        <div class="architect-card founder" data-architect="1">
+          <canvas class="hologram-avatar" width="220" height="220"></canvas>
+          <div class="avatar-glow founder"></div>
+          <h3>@stormweaver</h3>
+          <p class="bio">ex-Vercel → 10 yoe</p>
+          <p class="path">Засновник Ордену</p>
+          <p class="blade">Володар усіх Шляхів</p>
+          <p class="role">Верховний Архітектор</p>
+        </div>
+
+        <div class="architect-card founder" data-architect="2">
+          <canvas class="hologram-avatar" width="220" height="220"></canvas>
+          <div class="avatar-glow founder"></div>
+          <h3>@voidwalker</h3>
+          <p class="bio">ex-Apple → Safari JS</p>
+          <p class="path">Засновник Ордену</p>
+          <p class="blade">Творець Пекельного Язика</p>
+          <p class="role">Хранитель Рун</p>
+        </div>
+
+        <div class="architect-card founder" data-architect="3">
+          <canvas class="hologram-avatar" width="220" height="220"></canvas>
+          <div class="avatar-glow founder"></div>
+          <h3>@runeweaver</h3>
+          <p class="bio">ex-Google → TensorFlow</p>
+          <p class="path">Засновник Ордену</p>
+          <p class="blade">Майстер Закону Абсолюту</p>
+          <p class="role">Творець Шляхів</p>
+        </div>
+
+        <!-- ВИПУСКНИКИ — ТОЧНО ЗА КУРСАМИ -->
+        <!-- 1. Реактивний Розлом (Frontend) -->
+        <div class="architect-card" data-architect="4" data-dominion="frontend">
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@codephantom</h3>
+          <p class="bio">ex-OpenAI → GPT</p>
+          <p class="path" data-path="Frontend Dominion">Frontend Dominion</p>
+          <p class="blade">Реактивний Розлом</p>
+          <p class="role">Майстер 3D-реактивності</p>
+        </div>
+
+        <!-- 2. Портал Безсмертя (Frontend) -->
+        <div class="architect-card" data-architect="5" data-dominion="frontend">
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@shadowforge</h3>
+          <p class="bio">ex-Meta → React Native</p>
+          <p class="path" data-path="Frontend Dominion">Frontend Dominion</p>
+          <p class="blade">Портал Безсмертя</p>
+          <p class="role">Творець Awwwards</p>
+        </div>
+
+        <!-- 3. Пекельний Язик (Backend) -->
+        <div class="architect-card" data-architect="6" data-dominion="backend">
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@netherbyte</h3>
+          <p class="bio">ex-AWS → Lambda</p>
+          <p class="path" data-path="Backend Fortress">Backend Fortress</p>
+          <p class="blade">Пекельний Язик</p>
+          <p class="role">Коваль 0.4 мс API</p>
+        </div>
+
+        <!-- 4. Тіньовий Моноліт (Backend) -->
+        <div class="architect-card" data-architect="7" data-dominion="backend">
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@arcaneghost</h3>
+          <p class="bio">ex-Microsoft → Azure</p>
+          <p class="path" data-path="Backend Fortress">Backend Fortress</p>
+          <p class="blade">Тіньовий Моноліт</p>
+          <p class="role">Архітектор $25k MRR</p>
+        </div>
+
+        <!-- 5. Трон Турбореакт (Fullstack) -->
+        <div
+          class="architect-card"
+          data-architect="8"
+          data-dominion="fullstack"
+        >
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@runeblade</h3>
+          <p class="bio">ex-IBM → Quantum</p>
+          <p class="path" data-path="Fullstack Empire">Fullstack Empire</p>
+          <p class="blade">Трон Турбореакт</p>
+          <p class="role">Володар T3 Stack</p>
+        </div>
+
+        <!-- 6. Закон Абсолюту (Fullstack) -->
+        <div
+          class="architect-card"
+          data-architect="9"
+          data-dominion="fullstack"
+        >
+          <canvas class="hologram-avatar" width="200" height="200"></canvas>
+          <div class="avatar-glow"></div>
+          <h3>@voidrune</h3>
+          <p class="bio">ex-SpaceX → Starlink</p>
+          <p class="path" data-path="Fullstack Empire">Fullstack Empire</p>
+          <p class="blade">Закон Абсолюту</p>
+          <p class="role">Пророк AI Agents</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Таймлайн — Метро-карта Ордену -->
+    <section class="council-timeline">
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-points">
+          <div class="point" data-year="2022">
+            <span class="year">2022</span>
+            <p>Заснування Ордену</p>
+          </div>
+          <div class="point" data-year="2023">
+            <span class="year">2023</span>
+            <p>Перші Шляхи</p>
+          </div>
+          <div class="point" data-year="2024">
+            <span class="year">2024</span>
+            <p>Рада Дев'яти</p>
+          </div>
+          <div class="point current" data-year="2025">
+            <span class="year">Q1 2025</span>
+            <p>Ти тут <span class="rune-blink">ᚦ</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="arcane-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="/">01 Пробудження</a>
+          <a href="/pages/paths.html">02 Шляхи</a>
+          <a href="/pages/council.html">03 Рада</a>
+          <a href="/pages/access.html">04 Контакти</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          © 1666–2025 <span class="gold">Орден Дев’яти</span>
+        </p>
+        <p class="runes">ᚠᚢᚦᚨᚱᚲ • ᚷᚹᚺᚾᛁᛃ • ᛈᛉᛊᛏᛒᛖᛗ</p>
+      </div>
+    </footer>
+
+    <!-- Матриця -->
+    <canvas id="matrix"></canvas>
+
+    <!-- JS -->
+    <script type="module" src="/assets/js/global.js"></script>
+    <script type="module" src="/assets/js/council.js"></script>
+  </body>
+</html>
