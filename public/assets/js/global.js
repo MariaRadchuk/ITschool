@@ -1,3 +1,5 @@
+//global.js
+
 document.addEventListener('DOMContentLoaded', () => {
   // ==================== MATRIX RAIN ====================
   const canvas = document.getElementById('matrix');
@@ -81,39 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.classList.toggle('active');
   });
 
-  // ==================== КУРСОР ====================
-// const cursor = document.querySelector('.cursor');
-// if (cursor) {
-//   document.body.style.cursor = 'none';
-
-//   let mouseX = 0;
-//   let mouseY = 0;
-//   let cursorX = 0;
-//   let cursorY = 0;
-//   const speed = 0.15; // Чим менше — тим плавніше
-
-//   const updateCursor = () => {
-//     cursorX += (mouseX - cursorX) * speed;
-//     cursorY += (mouseY - cursorY) * speed;
-//     cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-//     requestAnimationFrame(updateCursor);
-//   };
-
-//   document.addEventListener('mousemove', (e) => {
-//     mouseX = e.clientX;
-//     mouseY = e.clientY;
-//   });
-
-//   // Активний стан (на посиланнях, кнопках)
-//   document.querySelectorAll('a, button, .burger, .track-card[data-path], .dominion-card, .altar-close').forEach(el => {
-//     el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-//     el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-//   });
-
-//   // Запуск анімації
-//   updateCursor();
-// }
-
   // ==================== ПЛАВНИЙ СКРОЛ ПО ЯКОРЯМ ====================
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -156,27 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.boxShadow = '';
     });
   });
-
-  // ==================== АВТОМАТИЧНА АКТИВНА НАВІГАЦІЯ ====================
-  (() => {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.header-nav a[data-page]');
-
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const page = link.getAttribute('data-page');
-
-      const isCurrentPage = 
-        (page === 'home' && (currentPath === '/' || currentPath.endsWith('/index.html'))) ||
-        (page !== 'home' && currentPath.includes(href));
-
-      if (isCurrentPage) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
-  })();
 });
 
 // ══════════════════════════════════════
