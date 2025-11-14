@@ -22,7 +22,7 @@ body {
   color: #808080;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  cursor: none;
+  /* cursor: none; */
   line-height: 1.6;
 }
 
@@ -181,7 +181,7 @@ body {
   letter-spacing: 8px;
 }
 
-/* Кастомний курсор — плавний, без глюків */
+/* Кастомний курсор — плавний, без глюків
 .cursor {
   position: fixed;
   top: 0;
@@ -203,7 +203,7 @@ body {
   height: 40px;
   background: rgba(139, 0, 255, 0.2);
   border-color: #ff0044;
-}
+} */
 
 /* ================== АДАПТИВ ДЛЯ ХЕДЕРА І ФУТЕРА ================== */
 @media (max-width: 768px) {

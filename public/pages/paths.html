@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body data-page="paths">
     <!-- Header -->
     <header class="arcane-header">
       <div class="header-content">
@@ -25,9 +25,9 @@
         </div>
         <nav class="header-nav">
           <a href="/" data-page="home">01 Пробудження</a>
-          <a href="/public/paths.html" data-page="paths">02 Шляхи</a>
-          <a href="/public/council.html" data-page="council">03 Рада</a>
-          <a href="/public/access.html" data-page="access">04 Контакти</a>
+          <a href="/public/pages/paths.html" data-page="paths">02 Шляхи</a>
+          <a href="/public/pages/council.html" data-page="council">03 Рада</a>
+          <a href="/public/pages/access.html" data-page="access">04 Контакти</a>
         </nav>
         <div class="burger">☰</div>
       </div>
@@ -86,7 +86,7 @@
         <div class="altar-content">
           <div class="altar-title">FRONTEND DOMINION</div>
           <div class="blades">
-            <div class="blade-card">
+            <div class="blade-card" data-course="frontend">
               <h4>Клинок Перший: Реактивний Розлом</h4>
               <p class="stack">
                 React 19 → Zustand → Signals → Three.js + WebGL
@@ -94,7 +94,7 @@
               <p class="desc">Портфоліо, що ламає 4090. 120 FPS. 60k+ зірок.</p>
               <div class="badge">12 тижнів</div>
             </div>
-            <div class="blade-card">
+            <div class="blade-card" data-course="frontend">
               <h4>Клинок Другий: Портал Безсмертя</h4>
               <p class="stack">Next.js 15 + RSC + Edge + GSAP + Framer</p>
               <p class="desc">Сайт-легенда. Awwwards «Site of the Year».</p>
@@ -110,13 +110,13 @@
         <div class="altar-content">
           <div class="altar-title">BACKEND FORTRESS</div>
           <div class="blades">
-            <div class="blade-card">
+            <div class="blade-card" data-course="backend">
               <h4>Клинок Перший: Пекельний Язик</h4>
               <p class="stack">Rust + Actix + Tokio + SQLx + WASM</p>
               <p class="desc">API: 0.4 мс. 1M rps. Без простоїв.</p>
               <div class="badge">10 тижнів</div>
             </div>
-            <div class="blade-card">
+            <div class="blade-card" data-course="backend">
               <h4>Клинок Другий: Тіньовий Моноліт</h4>
               <p class="stack">Node 22 + Bun + Edge + Redis + Kafka</p>
               <p class="desc">SaaS: від 0 до $25k MRR за 90 днів.</p>
@@ -128,12 +128,11 @@
       </div>
 
       <!-- FULLSTACK ALTAR -->
-      <!-- FULLSTACK ALTAR -->
       <div class="altar" id="fullstack-altar" data-dominion="fullstack">
         <div class="altar-content">
           <div class="altar-title">FULLSTACK EMPIRE</div>
           <div class="blades">
-            <div class="blade-card">
+            <div class="blade-card" data-course="fullstack">
               <h4>Клинок Перший: Трон Турбореакт</h4>
               <p class="stack">
                 T3 Stack + Next.js 15 + tRPC + Prisma + Tailwind
@@ -141,7 +140,7 @@
               <p class="desc">Свій Vercel. Свій edge. Свій закон.</p>
               <div class="badge">16 тижнів</div>
             </div>
-            <div class="blade-card">
+            <div class="blade-card" data-course="fullstack">
               <h4>Клинок Другий: Закон Абсолюту</h4>
               <p class="stack">Fullstack + AI Agents + Cursor.sh + Claude</p>
               <p class="desc">Ти не пишеш код. Ти наказуєш.</p>
@@ -178,8 +177,50 @@
     <!-- Матриця -->
     <canvas id="matrix"></canvas>
 
-    <!-- Кастомний курсор -->
-    <div class="cursor"></div>
+    <!-- МОДАЛЬНЕ ВІКНО -->
+    <div class="course-modal" id="course-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">×</button>
+
+        <div class="modal-body">
+          <h3 class="modal-title" id="modal-title"></h3>
+          <p class="modal-stack" id="modal-stack"></p>
+          <p class="modal-desc" id="modal-desc"></p>
+          <div class="modal-badge" id="modal-badge"></div>
+
+          <div class="modal-details">
+            <h4>Що ти отримаєш:</h4>
+            <ul id="modal-features"></ul>
+          </div>
+
+          <button class="enter-darkness-btn" id="enter-darkness">
+            УВІЙТИ В ТЕМРЯВУ
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ТОСТ-ПОВІДОМЛЕННЯ -->
+    <div class="darkness-toast" id="darkness-toast">
+      <div class="toast-content">
+        <span class="toast-icon">ᚠ</span>
+        <div class="toast-message">
+          <h4>ТИ УВІЙШОВ У ТЕМРЯВУ</h4>
+          <p>Твій шлях розпочато. Орден Дев’яти спостерігає.</p>
+        </div>
+      </div>
+    </div>
+    <!-- МОДАЛКА-ПОВІДОМЛЕННЯ — ТУТ -->
+    <!-- <div class="success-modal" id="success-modal">
+      <div class="success-content">
+        <div class="success-message">
+          <h3>ТИ УВІЙШОВ У ТЕМРЯВУ</h3>
+          <p>Твій шлях розпочато. Орден Дев’яти спостерігає.</p>
+        </div>
+      </div>
+    </div> -->
+
+    <canvas id="matrix"></canvas>
 
     <!-- JS -->
     <script type="module" src="/assets/js/global.js"></script>
