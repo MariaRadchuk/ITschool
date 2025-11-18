@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════════════
-// PATHS.JS — РІВЕНЬ 02: ШЛЯХИ
-// Орден Дев’яти. Темрява. Код. Магія.
+// public/js/PATHS.JS — РІВЕНЬ 02: ШЛЯХИ
 // ═══════════════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -167,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dominion) toast.classList.add(dominion);
 
     toast.classList.add('active');
+toast.classList.remove('frontend', 'backend', 'fullstack'); // якщо був
 
     toastTimeout = setTimeout(() => {
       toast.classList.remove('active');

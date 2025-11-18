@@ -1,4 +1,6 @@
-//global.js
+// ═══════════════════════════════════════════════════════════
+// public/js/GLOBAL.JS — РІВЕНЬ 01: ПРОБУДЖЕННЯ
+// ═══════════════════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
   // ==================== MATRIX RAIN ====================
@@ -142,4 +144,33 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.add('active');
     }
   });
+});
+
+// ══════════════════════════════════════
+// КНОПКА «НАВЕРХ» — Плавний скрол
+// ══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollBtn = document.getElementById('scroll-to-top');
+
+  if (!scrollBtn) return;
+
+  const toggleButton = () => {
+    if (window.scrollY > 500) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  };
+
+  window.addEventListener('scroll', toggleButton);
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Показати одразу, якщо вже прокручено (наприклад, при переході з хешем)
+  toggleButton();
 });

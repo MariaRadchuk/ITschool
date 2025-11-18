@@ -47,45 +47,8 @@
   margin: 0;
 }
 
-/* CTA — БЛИЗЬКО ДО ЗАГОЛОВКА */
-.paths-cta {
-  margin: 0;
-  padding: 0;
-}
-
-/* .cta-btn {
-  padding: 1.2rem 3.5rem;
-  font: 700 1.4rem "JetBrains Mono", monospace;
-  background: transparent;
-  border: 2px solid #808080;
-  color: #808080;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 40px;
-}
-
-.cta-btn span {
-  transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-  border-color: #8b00ff;
-  color: #8b00ff;
-  background: rgba(139, 0, 255, 0.1);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(139, 0, 255, 0.25);
-}
-
-.cta-btn:hover span {
-  text-shadow: 0 0 12px #8b00ff;
-} */
-
 /* ══════════════════════════════════════
-   2. DOMINIONS — Три Вівтарі
+   2. DOMINIONS — Три Домініони
    ══════════════════════════════════════ */
 .dominions {
   padding: 6rem 5% 4rem;
@@ -130,10 +93,7 @@
 
 .dominion-glow {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: radial-gradient(
     circle at center,
     var(--glow-color, #8b00ff) 0%,
@@ -219,7 +179,7 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: transparent;
+  background: none;
   border: none;
   font: 700 2.5rem "Inter", sans-serif;
   color: #666;
@@ -322,10 +282,7 @@
 .course-modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(8px);
   z-index: 10000;
@@ -364,7 +321,7 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: transparent;
+  background: none;
   border: none;
   font: 700 2.5rem "Inter", sans-serif;
   color: #666;
@@ -376,7 +333,6 @@
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 10;
-  pointer-events: auto;
 }
 
 .modal-close:hover {
@@ -402,7 +358,6 @@
   font-weight: 500;
   margin: 1rem 0;
 }
-
 .modal-desc {
   color: #aaa;
   font-size: 1.1rem;
@@ -426,14 +381,12 @@
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
-
 .modal-details ul {
   list-style: none;
   text-align: left;
   max-width: 400px;
   margin: 0 auto;
 }
-
 .modal-details li {
   color: #ccc;
   margin: 0.8rem 0;
@@ -441,7 +394,6 @@
   padding-left: 1.8rem;
   font-size: 1rem;
 }
-
 .modal-details li::before {
   content: "ᚠ";
   color: #8b00ff;
@@ -450,7 +402,7 @@
   font-weight: bold;
 }
 
-/* Колір модалки */
+/* Динамічні кольори модалки */
 .course-modal.frontend {
   --modal-glow: #8b00ff;
 }
@@ -464,10 +416,7 @@
 .course-modal::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: radial-gradient(
     circle at center,
     var(--modal-glow) 0%,
@@ -490,7 +439,6 @@
   border-color: var(--modal-glow) !important;
 }
 
-/* Кнопка "УВІЙТИ В ТЕМРЯВУ" */
 .enter-darkness-btn {
   margin-top: 2.5rem;
   padding: 1.2rem 3.5rem;
@@ -514,92 +462,145 @@
 }
 
 /* ══════════════════════════════════════
-   7. МОДАЛКА-ПОВІДОМЛЕННЯ
+   7. ТОСТ-ПОРТАЛ — "ТИ УВІЙШОВ У ТЕМРЯВУ" (посередині)
    ══════════════════════════════════════ */
-/* ══════════════════════════════════════
-   7. ТОСТ-ПОВІДОМЛЕННЯ — "ТИ УВІЙШОВ У ТЕМРЯВУ"
-   ══════════════════════════════════════ */
-.darkness-toast {
+.darkness-portal {
   position: fixed;
-  bottom: 2rem;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 16px;
-  padding: 1.2rem 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  max-width: 420px;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #0a0a0a;
+  border: 2px solid #333;
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  max-width: 480px;
   width: 90%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  text-align: center;
   z-index: 10002;
+  box-shadow: 0 0 80px rgba(139, 0, 255, 0.3);
   opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.darkness-toast.active {
-  transform: translateX(-50%) translateY(0);
+.darkness-portal.active {
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  visibility: visible;
   pointer-events: auto;
 }
 
+.darkness-portal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #8b00ff20 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.darkness-portal.active::after {
+  opacity: 1;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+
 .toast-icon {
-  font: 700 2.2rem "Uncial Antiqua", cursive;
-  color: var(--modal-glow, #8b00ff);
-  text-shadow: 0 0 20px var(--modal-glow, #8b00ff);
-  animation: pulseRune 1.5s infinite alternate;
+  font: 700 5.5rem "Uncial Antiqua", cursive;
+  color: #8b00ff;
+  text-shadow: 0 0 30px #8b00ff;
+  animation: runeBreathe 3s infinite ease-in-out;
 }
 
 .toast-message h4 {
-  font: 700 1.2rem "JetBrains Mono", monospace;
-  color: var(--modal-glow, #8b00ff);
-  margin: 0 0 0.3rem;
-  text-shadow: 0 0 15px var(--modal-glow, #8b00ff);
+  font: 700 1.8rem "JetBrains Mono", monospace;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 0 20px #8b00ff;
 }
 
 .toast-message p {
-  font: 400 0.95rem "Inter", sans-serif;
+  font: 500 1.1rem "Inter", sans-serif;
   color: #aaa;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-@keyframes pulseRune {
-  from {
-    transform: scale(1);
+@keyframes runeBreathe {
+  0%,
+  100% {
+    transform: scale(1) rotate(-3deg);
+    text-shadow: 0 0 30px #8b00ff;
   }
-  to {
-    transform: scale(1.15);
+  50% {
+    transform: scale(1.1) rotate(3deg);
+    text-shadow: 0 0 50px #8b00ff, 0 0 80px #8b00ff40;
   }
 }
 
-/* Адаптив */
-@media (max-width: 480px) {
-  .darkness-toast {
-    bottom: 1rem;
-    padding: 1rem 1.5rem;
-    gap: 0.8rem;
+/* ══════════════════════════════════════
+   КНОПКА «НАВЕРХ» — Пурпурова стрілочка
+   ══════════════════════════════════════ */
+#scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  background: rgba(139, 0, 255, 0.15);
+  border: 2px solid #8b00ff;
+  border-radius: 50%;
+  color: #8b00ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(139, 0, 255, 0.3);
+}
+
+#scroll-to-top:hover {
+  background: #8b00ff;
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(139, 0 Rome, 0.5);
+}
+
+#scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* На мобілці — трохи нижче і правіше */
+@media (max-width: 768px) {
+  #scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
   }
-  .toast-icon {
-    font-size: 1.8rem;
-  }
-  .toast-message h4 {
-    font-size: 1.1rem;
-  }
-  .toast-message p {
-    font-size: 0.9rem;
+  #scroll-to-top svg {
+    width: 24px;
+    height: 24px;
   }
 }
 /* ══════════════════════════════════════
-   8. АДАПТИВНІСТЬ
+   8. АДАПТИВНІСТЬ (весь адаптив — в кінці)
    ══════════════════════════════════════ */
-
-/* ДЕСКТОП (1024px+) */
 @media (min-width: 1025px) {
   .dominion-card {
     width: 340px;
@@ -610,7 +611,6 @@
   }
 }
 
-/* ПЛАНШЕТ (768px — 1024px) */
 @media (max-width: 1024px) {
   .dominion-card {
     width: 300px;
@@ -628,11 +628,6 @@
   .hero-content {
     gap: 1.2rem;
   }
-  .cta-btn {
-    padding: 1rem 3rem;
-    font-size: 1.2rem;
-  }
-
   .dominion-card {
     width: 90%;
     height: auto;
@@ -641,14 +636,12 @@
   .blade-card {
     width: 100%;
   }
-
   .altar-content {
     padding: 2rem;
   }
   .altar-title {
     font-size: 1.8rem;
   }
-
   .modal-body {
     padding: 2rem;
   }
@@ -660,20 +653,12 @@
     right: 1rem;
     font-size: 2rem;
   }
-
   .enter-darkness-btn {
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
   }
-  .success-content {
-    padding: 2rem;
-  }
-  .success-message h3 {
-    font-size: 1.8rem;
-  }
 }
 
-/* ТЕЛЕФОН (480px і менше) */
 @media (max-width: 480px) {
   .paths-hero h1 {
     font-size: 2.8rem;
@@ -681,17 +666,11 @@
   .subtitle {
     font-size: 1.1rem;
   }
-  .cta-btn {
-    padding: 0.9rem 2.5rem;
-    font-size: 1.1rem;
-  }
-
   .altar-close {
     top: 1rem;
     right: 1rem;
     font-size: 2rem;
   }
-
   .modal-title {
     font-size: 1.5rem;
   }
@@ -702,5 +681,16 @@
   .enter-darkness-btn {
     padding: 0.9rem 2rem;
     font-size: 1rem;
+  }
+
+  /* Портал на мобільному */
+  .darkness-portal {
+    padding: 2rem 2.5rem;
+  }
+  .toast-icon {
+    font-size: 4.5rem;
+  }
+  .toast-message h4 {
+    font-size: 1.5rem;
   }
 }

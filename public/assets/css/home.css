@@ -157,6 +157,58 @@
   text-shadow: 0 0 15px #8b00ff;
 }
 
+/* ══════════════════════════════════════
+   КНОПКА «НАВЕРХ» — Пурпурова стрілочка
+   ══════════════════════════════════════ */
+#scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  background: rgba(139, 0, 255, 0.15);
+  border: 2px solid #8b00ff;
+  border-radius: 50%;
+  color: #8b00ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(139, 0, 255, 0.3);
+}
+
+#scroll-to-top:hover {
+  background: #8b00ff;
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(139, 0 Rome, 0.5);
+}
+
+#scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* На мобілці — трохи нижче і правіше */
+@media (max-width: 768px) {
+  #scroll-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+  }
+  #scroll-to-top svg {
+    width: 24px;
+    height: 24px;
+  }
+}
 /* Адаптив */
 @media (max-width: 1024px) {
   .track-card {

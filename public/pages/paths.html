@@ -1,3 +1,4 @@
+<!-- public/pages/paths.html -->
 <!DOCTYPE html>
 <html lang="uk">
   <head>
@@ -175,6 +176,22 @@
       </div>
     </footer>
 
+    <!-- КНОПКА НАВЕРХ -->
+    <button id="scroll-to-top" aria-label="Повернутися наверх">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
     <!-- Матриця -->
     <canvas id="matrix"></canvas>
 
@@ -202,7 +219,7 @@
     </div>
 
     <!-- ТОСТ-ПОВІДОМЛЕННЯ -->
-    <div class="darkness-toast" id="darkness-toast">
+    <div class="darkness-portal" id="darkness-toast">
       <div class="toast-content">
         <span class="toast-icon">ᚠ</span>
         <div class="toast-message">
@@ -211,17 +228,6 @@
         </div>
       </div>
     </div>
-    <!-- МОДАЛКА-ПОВІДОМЛЕННЯ — ТУТ -->
-    <!-- <div class="success-modal" id="success-modal">
-      <div class="success-content">
-        <div class="success-message">
-          <h3>ТИ УВІЙШОВ У ТЕМРЯВУ</h3>
-          <p>Твій шлях розпочато. Орден Дев’яти спостерігає.</p>
-        </div>
-      </div>
-    </div> -->
-
-    <canvas id="matrix"></canvas>
 
     <!-- JS -->
     <script type="module" src="/assets/js/global.js"></script>
