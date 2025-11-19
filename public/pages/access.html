@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcane Code | Рівень 04 — Доступ</title>
+
+    <link rel="stylesheet" href="/assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/home.css" />
+    <link rel="stylesheet" href="/assets/css/access.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body data-page="access">
+    <!-- ==================== ХЕДЕР ==================== -->
+    <header class="arcane-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="header-nav">
+          <a href="/" data-page="home">01 Пробудження</a>
+          <a href="/pages/paths.html" data-page="paths">02 Шляхи</a>
+          <a href="/pages/council.html" data-page="council">03 Рада</a>
+          <a href="/pages/access.html" data-page="access">04 Доступ</a>
+        </nav>
+        <div class="burger">☰</div>
+      </div>
+    </header>
+
+    <!-- ==================== ГЕРОЙ-СЕКЦІЯ: ПРИЙНЯТТЯ В ОРДЕН ==================== -->
+    <section class="access-hero">
+      <div class="hero-content">
+        <h1>
+          <span class="line">ТИ УВІЙШОВ</span>
+          <span class="line neon">У ТЕМРЯВУ</span>
+        </h1>
+        <p class="subtitle">Орден Дев’яти прийняв тебе.</p>
+        <button class="enter-btn rune-btn" id="open-rune-modal">
+          <span>ОТРИМАТИ СВОЮ РУНУ</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== КНИГА ТЕМРЯВИ: ІНФОРМАЦІЯ ПРО ЗАЛУ ==================== -->
+    <section class="dark-book-section" id="book-section">
+      <div class="book-container">
+        <div class="book">
+          <!-- Ліва сторінка — фото академії Ордену -->
+          <div class="book-page left-page">
+            <div class="page-inner">
+              <img
+                src="/assets/images/arcane-academy.png"
+                alt="Зала Ордену"
+                class="academy-photo"
+              />
+              <div class="photo-glow"></div>
+            </div>
+          </div>
+
+          <!-- Права сторінка — текст -->
+          <div class="book-page right-page">
+            <div class="page-inner">
+              <h2>Зала Ордену Дев’яти</h2>
+
+              <div class="book-text">
+                <p class="address">Київ<br />вул. Нижній Вал, 19</p>
+                <p class="password">
+                  Пароль: <span class="gold">Темрява кличе</span>
+                </p>
+                <p class="days">Пт & Сб після 19:00</p>
+              </div>
+
+              <div class="book-portals">
+                <a href="" target="_blank" class="portal">Telegram</a>
+                <a href="" target="_blank" class="portal">Instagram</a>
+                <a href="" target="_blank" class="portal">Discord</a>
+              </div>
+
+              <p class="book-final">
+                Ми обираємо.<br /><span class="gold">Ти вже обраний.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== МОДАЛЬНЕ ВІКНО З РУНОЮ ==================== -->
+    <div class="rune-modal" id="rune-modal">
+      <div class="modal-overlay" id="modal-overlay"></div>
+
+      <div class="rune-card">
+        <button class="modal-close" id="close-rune-modal" aria-label="Закрити">
+          ×
+        </button>
+
+        <div class="rune-glow"></div>
+        <div class="rune-big">Rune</div>
+
+        <h2>Твоя руна — <span class="gold">Dagaz</span></h2>
+        <p class="rune-meaning">
+          Світанок. Новий початок.<br />Сила, що пробуджує код у Темряві.
+        </p>
+
+        <div class="rune-border-top"></div>
+        <div class="rune-border-bottom"></div>
+      </div>
+    </div>
+
+    <!-- ==================== ФУТЕР ==================== -->
+    <footer class="arcane-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="rune-logo">ARCANE</span>
+          <span class="brand-text">CODE ACADEMY</span>
+        </div>
+        <nav class="footer-nav">
+          <a href="/">01 Пробудження</a>
+          <a href="/pages/paths.html">02 Шляхи</a>
+          <a href="/pages/council.html">03 Рада</a>
+          <a href="/pages/access.html">04 Доступ</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          © 1666–2025 <span class="gold">Орден Дев’яти</span>
+        </p>
+        <p class="runes">Futhark • Gwela • Pzstbem</p>
+      </div>
+    </footer>
+
+    <!-- ==================== КНОПКА «НАВЕРХ» ==================== -->
+    <button id="scroll-to-top" aria-label="Повернутися наверх">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </button>
+
+    <canvas id="matrix"></canvas>
+
+    <script type="module" src="/assets/js/global.js"></script>
+    <script type="module" src="/assets/js/access.js"></script>
+  </body>
+</html>

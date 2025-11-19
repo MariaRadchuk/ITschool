@@ -1,83 +1,87 @@
 /* ==========================================================================
    PATHS.CSS — РІВЕНЬ 02: ШЛЯХИ
-   Орден Дев’яти. Темрява. Магія. Код.
    ========================================================================== */
-
-/* ══════════════════════════════════════
-   1. HERO — Вхід у Шляхи
-   ══════════════════════════════════════ */
+/* ====================== 1. HERO — Вхід у Шляхи ====================== */
 .paths-hero {
-  min-height: 80vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 5%;
-  margin-top: 100px;
+  padding: 10rem 5% 8rem;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-content {
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
+  z-index: 2;
 }
 
 .paths-hero h1 {
-  font: 500 clamp(3.5rem, 7vw, 6rem) "JetBrains Mono", monospace;
-  line-height: 1.1;
-  margin: 0;
+  font-size: clamp(3.8rem, 8vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -2px;
 }
 
 .paths-hero .line {
   display: block;
 }
-.paths-hero .neon {
+
+.neon {
   color: #8b00ff;
-  text-shadow: 0 0 30px #8b00ff;
+  text-shadow: none;
+}
+
+@keyframes pulse-glow {
+  from {
+    text-shadow: none;
+  }
+  to {
+    text-shadow: none;
+  }
 }
 
 .subtitle {
-  font: 600 1.3rem "Inter", sans-serif;
+  font: 600 1.35rem "Inter", sans-serif;
   color: #aaa;
-  letter-spacing: 2px;
-  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-/* ══════════════════════════════════════
-   2. DOMINIONS — Три Домініони
-   ══════════════════════════════════════ */
+/* ====================== 2. DOMINIONS — Три Домініони ====================== */
 .dominions {
-  padding: 6rem 5% 4rem;
-  position: relative;
+  padding: 10rem 5% 8rem;
 }
 
 .dominions-container {
-  display: flex;
-  gap: 3rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 4rem;
   max-width: 1400px;
   margin: 0 auto;
+  justify-items: anchor-center;
 }
 
 .dominion-card {
-  width: 340px;
-  height: 400px;
-  background: #111;
+  height: 420px;
+  background: #111111;
   border: 1px solid #333;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 3rem 2rem;
   text-align: center;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.6s ease;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(50px);
+  transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dominion-card.visible {
@@ -85,75 +89,84 @@
   transform: translateY(0);
 }
 
-.dominion-card:hover {
-  transform: translateY(-20px) scale(1.05);
-  border-color: var(--glow-color, #8b00ff);
-  box-shadow: 0 30px 60px rgba(139, 0, 255, 0.3);
-}
-
 .dominion-glow {
   position: absolute;
   inset: 0;
   background: radial-gradient(
     circle at center,
-    var(--glow-color, #8b00ff) 0%,
-    transparent 70%
+    var(--glow-color) 0%,
+    transparent 65%
   );
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.8s ease;
   pointer-events: none;
 }
 
 .dominion-card:hover .dominion-glow {
-  opacity: 0.2;
+  opacity: 0.25;
 }
 
 .dominion-card h3 {
-  font: 700 1.8rem "JetBrains Mono", monospace;
-  color: var(--glow-color, #8b00ff);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 15px var(--glow-color, #8b00ff);
+  font: 700 2rem "JetBrains Mono", monospace;
+  color: var(--glow-color);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 20px var(--glow-color);
+  transition: all 0.5s;
 }
 
-.tagline {
-  color: #aaa;
-  font-size: 1.1rem;
-  margin: 1.5rem 0;
+.dominion-card .tagline {
+  color: #bbb;
+  font-size: 1.15rem;
+  margin: 1.8rem 0 2.5rem;
 }
 
-.rune {
-  font: 700 4rem "Uncial Antiqua", cursive;
-  color: #333;
-  text-shadow: 0 0 20px var(--glow-color, #8b00ff);
-  transition: all 0.6s ease;
+.dominion-card .rune {
+  font: 700 5.5rem "Uncial Antiqua", cursive;
+  color: #222;
+  text-shadow: 0 0 20px var(--glow-color);
+  transition: all 0.7s ease;
+}
+
+.dominion-card:hover {
+  transform: translateY(-24px) scale(1.06);
+  border-color: var(--glow-color);
+  box-shadow: 0 30px 80px rgba(139, 0, 255, 0.25),
+    0 0 0 2px var(--glow-color-alpha, rgba(139, 0, 255, 0.3));
 }
 
 .dominion-card:hover .rune {
-  color: var(--glow-color, #8b00ff);
-  text-shadow: 0 0 40px var(--glow-color, #8b00ff);
-  transform: scale(1.2);
+  color: var(--glow-color);
+  text-shadow: 0 0 50px var(--glow-color);
+  transform: scale(1.3) rotate(5deg);
 }
 
-/* ══════════════════════════════════════
-   3. ALTARS — Вівтарі (по кліку)
-   ══════════════════════════════════════ */
-.altars {
-  padding: 4rem 5%;
-  position: relative;
+/* Кольорові теми Домініонів */
+[data-dominion="frontend"] {
+  --glow-color: #8b00ff;
+  --glow-color-alpha: rgba(139, 0, 255, 0.3);
+}
+[data-dominion="backend"] {
+  --glow-color: #d4af37;
+  --glow-color-alpha: rgba(212, 175, 55, 0.3);
+}
+[data-dominion="fullstack"] {
+  --glow-color: #ff0044;
+  --glow-color-alpha: rgba(255, 0, 68, 0.3);
 }
 
+/* ====================== 3. ALTARS — Вівтарі ====================== */
 .altar {
   display: none;
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-  max-width: 1000px;
-  margin: 6rem auto;
-  background: #0a0a0a;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  max-width: 1100px;
+  margin: 8rem auto;
+  background: #0f0f0f;
   border: 1px solid #333;
-  border-radius: 20px;
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6);
 }
 
 .altar.active {
@@ -164,15 +177,16 @@
 
 .altar-content {
   position: relative;
-  padding: 3rem;
+  padding: 4rem 3rem;
+  background: linear-gradient(to bottom, #111 0%, #0a0a0a 100%);
 }
 
 .altar-title {
-  font: 700 2.2rem "JetBrains Mono", monospace;
-  color: var(--glow-color, #8b00ff);
+  font: 700 2.6rem "JetBrains Mono", monospace;
+  color: var(--glow-color);
   text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 20px var(--glow-color, #8b00ff);
+  margin-bottom: 3rem;
+  text-shadow: 0 0 30px var(--glow-color);
 }
 
 .altar-close {
@@ -197,17 +211,13 @@
   color: #ff0044;
   transform: scale(1.2);
 }
-
-/* ══════════════════════════════════════
-   4. BLADES — Клинки
-   ══════════════════════════════════════ */
+/* ====================== 4. BLADES — Клинки ====================== */
 .blades {
   display: flex;
   gap: 3rem;
   justify-content: center;
   flex-wrap: wrap;
 }
-
 .blade-card {
   width: 380px;
   background: #111;
@@ -219,32 +229,27 @@
   transform: translateY(30px);
   transition: all 0.6s ease;
 }
-
 .blade-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
-
 .blade-card h4 {
   font: 700 1.5rem "JetBrains Mono", monospace;
   color: var(--glow-color, #8b00ff);
   margin-bottom: 1rem;
 }
-
 .blade-card .stack {
   color: #d4af37;
   font-size: 0.95rem;
   font-weight: 500;
   margin: 1rem 0;
 }
-
 .blade-card .desc {
   color: #aaa;
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
-
 .blade-card .badge {
   margin-top: 1.5rem;
   padding: 0.8rem 2rem;
@@ -256,16 +261,12 @@
   cursor: pointer;
   transition: all 0.4s ease;
 }
-
 .blade-card:hover .badge {
   background: rgba(139, 0, 255, 0.1);
   transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
 }
-
-/* ══════════════════════════════════════
-   5. КОЛЬОРИ ДОМІНІОНІВ
-   ══════════════════════════════════════ */
+/* Кольорові теми Домініонів */
 [data-dominion="frontend"] {
   --glow-color: #8b00ff;
 }
@@ -275,10 +276,7 @@
 [data-dominion="fullstack"] {
   --glow-color: #ff0044;
 }
-
-/* ══════════════════════════════════════
-   6. МОДАЛКА КУРСУ
-   ══════════════════════════════════════ */
+/* ====================== 5. МОДАЛКА КУРСУ ====================== */
 .course-modal {
   display: none;
   position: fixed;
@@ -293,13 +291,11 @@
   padding: 2rem;
   pointer-events: none;
 }
-
 .course-modal.active {
   display: flex;
   opacity: 1;
   pointer-events: auto;
 }
-
 .modal-content {
   background: #111;
   border: 1px solid #333;
@@ -312,11 +308,9 @@
   box-shadow: 0 30px 80px rgba(139, 0, 255, 0.3);
   pointer-events: auto;
 }
-
 .course-modal.active .modal-content {
   transform: scale(1);
 }
-
 .modal-close {
   position: absolute;
   top: 1.5rem;
@@ -334,24 +328,20 @@
   transition: all 0.3s ease;
   z-index: 10;
 }
-
 .modal-close:hover {
   color: #ff0044;
   transform: scale(1.2);
 }
-
 .modal-body {
   padding: 3rem;
   text-align: center;
 }
-
 .modal-title {
   font: 700 2rem "JetBrains Mono", monospace;
   color: #8b00ff;
   margin-bottom: 1rem;
   text-shadow: 0 0 15px #8b00ff;
 }
-
 .modal-stack {
   color: #d4af37;
   font-size: 1.1rem;
@@ -364,7 +354,6 @@
   line-height: 1.7;
   margin-bottom: 2rem;
 }
-
 .modal-badge {
   display: inline-block;
   padding: 0.8rem 2rem;
@@ -375,7 +364,6 @@
   color: #8b00ff;
   margin-bottom: 2rem;
 }
-
 .modal-details h4 {
   color: #8b00ff;
   font-size: 1.3rem;
@@ -401,7 +389,6 @@
   left: 0;
   font-weight: bold;
 }
-
 /* Динамічні кольори модалки */
 .course-modal.frontend {
   --modal-glow: #8b00ff;
@@ -412,7 +399,6 @@
 .course-modal.fullstack {
   --modal-glow: #ff0044;
 }
-
 .course-modal::before {
   content: "";
   position: absolute;
@@ -426,7 +412,6 @@
   pointer-events: none;
   z-index: -1;
 }
-
 .modal-title,
 .modal-badge,
 .modal-details h4,
@@ -434,11 +419,9 @@
   color: var(--modal-glow) !important;
   text-shadow: 0 0 15px var(--modal-glow) !important;
 }
-
 .modal-badge {
   border-color: var(--modal-glow) !important;
 }
-
 .enter-darkness-btn {
   margin-top: 2.5rem;
   padding: 1.2rem 3.5rem;
@@ -453,17 +436,13 @@
   align-items: center;
   gap: 0.8rem;
 }
-
 .enter-darkness-btn:hover {
   background: var(--modal-glow, #8b00ff);
   color: #0a0a0a;
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(139, 0, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(54, 0, 87, 0.4);
 }
-
-/* ══════════════════════════════════════
-   7. ТОСТ-ПОРТАЛ — "ТИ УВІЙШОВ У ТЕМРЯВУ" (посередині)
-   ══════════════════════════════════════ */
+/* ====================== 6. ТОСТ-ПОРТАЛ ====================== */
 .darkness-portal {
   position: fixed;
   top: 50%;
@@ -482,13 +461,11 @@
   pointer-events: none;
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 .darkness-portal.active {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   pointer-events: auto;
 }
-
 .darkness-portal::after {
   content: "";
   position: absolute;
@@ -499,11 +476,9 @@
   transition: opacity 0.6s ease;
   pointer-events: none;
 }
-
 .darkness-portal.active::after {
   opacity: 1;
 }
-
 .toast-content {
   display: flex;
   flex-direction: column;
@@ -512,28 +487,24 @@
   position: relative;
   z-index: 2;
 }
-
 .toast-icon {
   font: 700 5.5rem "Uncial Antiqua", cursive;
   color: #8b00ff;
   text-shadow: 0 0 30px #8b00ff;
   animation: runeBreathe 3s infinite ease-in-out;
 }
-
 .toast-message h4 {
   font: 700 1.8rem "JetBrains Mono", monospace;
   color: #fff;
   margin: 0;
   text-shadow: 0 0 20px #8b00ff;
 }
-
 .toast-message p {
   font: 500 1.1rem "Inter", sans-serif;
   color: #aaa;
   margin: 0;
   line-height: 1.5;
 }
-
 @keyframes runeBreathe {
   0%,
   100% {
@@ -546,9 +517,6 @@
   }
 }
 
-/* ══════════════════════════════════════
-   КНОПКА «НАВЕРХ» — Пурпурова стрілочка
-   ══════════════════════════════════════ */
 #scroll-to-top {
   position: fixed;
   bottom: 2rem;
@@ -571,22 +539,57 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(139, 0, 255, 0.3);
 }
-
 #scroll-to-top:hover {
   background: #8b00ff;
   color: #000;
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(139, 0 Rome, 0.5);
 }
-
 #scroll-to-top.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* На мобілці — трохи нижче і правіше */
+/* ====================== 7. АДАПТИВНІСТЬ ====================== */
+@media (max-width: 1024px) {
+  .dominion-card {
+    height: 380px;
+  }
+  .altar-content {
+    padding: 3rem 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .paths-hero {
+    padding: 9rem 5% 6rem;
+  }
+  .paths-hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .dominion-card {
+    height: auto;
+    padding: 2.8rem 2rem;
+  }
+  .blades {
+    grid-template-columns: 1fr;
+  }
+
+  .altar-content {
+    padding: 2.5rem 2rem;
+  }
+  .altar-title {
+    font-size: 2.1rem;
+  }
+
+  .modal-body {
+    padding: 3rem 2rem;
+  }
+  .modal-title {
+    font-size: 2rem;
+  }
   #scroll-to-top {
     bottom: 1.5rem;
     right: 1.5rem;
@@ -598,99 +601,36 @@
     height: 24px;
   }
 }
-/* ══════════════════════════════════════
-   8. АДАПТИВНІСТЬ (весь адаптив — в кінці)
-   ══════════════════════════════════════ */
-@media (min-width: 1025px) {
-  .dominion-card {
-    width: 340px;
-    height: 400px;
-  }
-  .blade-card {
-    width: 380px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .dominion-card {
-    width: 300px;
-    height: 360px;
-  }
-  .blade-card {
-    width: 350px;
-  }
-  .modal-content {
-    max-width: 550px;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-content {
-    gap: 1.2rem;
-  }
-  .dominion-card {
-    width: 90%;
-    height: auto;
-    padding: 2.5rem 2rem;
-  }
-  .blade-card {
-    width: 100%;
-  }
-  .altar-content {
-    padding: 2rem;
-  }
-  .altar-title {
-    font-size: 1.8rem;
-  }
-  .modal-body {
-    padding: 2rem;
-  }
-  .modal-title {
-    font-size: 1.7rem;
-  }
-  .modal-close {
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-  }
-  .enter-darkness-btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-  }
-}
 
 @media (max-width: 480px) {
   .paths-hero h1 {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
   }
   .subtitle {
     font-size: 1.1rem;
   }
-  .altar-close {
-    top: 1rem;
-    right: 1rem;
-    font-size: 2rem;
+
+  .dominion-card {
+    padding: 2.5rem 1.8rem;
   }
-  .modal-title {
-    font-size: 1.5rem;
-  }
-  .modal-stack,
-  .modal-desc {
-    font-size: 1rem;
-  }
-  .enter-darkness-btn {
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
+  .blade-card {
+    padding: 2.5rem 1.8rem;
   }
 
-  /* Портал на мобільному */
-  .darkness-portal {
-    padding: 2rem 2.5rem;
-  }
   .toast-icon {
-    font-size: 4.5rem;
+    font-size: 5rem;
   }
   .toast-message h4 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+  }
+}
+
+/* Повага до користувачів */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

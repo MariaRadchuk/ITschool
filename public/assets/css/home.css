@@ -1,26 +1,19 @@
-/* Залиш тільки стилі для головної сторінки */
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap");
+/* ==========================================================================
+   HOME.CSS — РІВЕНЬ 01: ПРОБУДЖЕННЯ
+   ========================================================================== */
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* === HERO === */
+/* ====================== HERO СЕКЦІЯ ====================== */
 .hero {
-  min-height: 700px;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 5%;
+  padding: 12rem 5% 8rem;
   opacity: 0;
-  transition: opacity 1.8s ease;
-  margin-top: 100px;
+  transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero.active {
@@ -28,71 +21,104 @@
 }
 
 .hero h1 {
-  font: 500 clamp(3rem, 6vw, 5rem) "JetBrains Mono", monospace;
-  line-height: 1.15;
-  margin-bottom: 2rem;
+  font-size: clamp(3.5rem, 8vw, 5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 
-.line {
+.hero .line {
   display: block;
-  color: #555;
-}
-.neon {
-  color: #8b00ff;
-  text-shadow: 0 0 30px #8b00ff;
+  color: #666;
+  transition: color 0.6s ease;
 }
 
-/* === BUTTON === */
+.hero .neon {
+  color: #8b00ff;
+  text-shadow: none; /* ← тінь повністю прибрана */
+  animation: pulse-glow 4s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from {
+    text-shadow: none;
+  }
+  to {
+    text-shadow: none;
+  }
+}
+
+/* Кнопка в hero — без тіні при ховері */
 .enter-btn {
-  margin-top: 20px;
-  padding: 1.5rem 4rem;
-  font: 700 1.5rem "JetBrains Mono", monospace;
-  background: transparent;
-  border: 2px solid #808080;
+  margin-top: 3rem;
+  padding: 1.6rem 4.5rem;
+  font: 700 1.4rem "JetBrains Mono", monospace;
   color: #808080;
-  border-radius: 12px;
+  background: transparent;
+  border: 2px solid #555;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 0, 255, 0.15),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
 }
 
 .enter-btn:hover {
-  border-color: #8b00ff;
   color: #8b00ff;
-  background: rgba(139, 0, 255, 0.1);
-  transform: translateY(-6px);
-  box-shadow: 0 15px 40px rgba(139, 0, 255, 0.25);
+  border-color: #8b00ff;
+  background: rgba(139, 0, 255, 0.12);
+  transform: translateY(-8px);
 }
 
-/* === TRACKS === */
+.enter-btn:hover::before {
+  transform: translateX(100%);
+}
+
+/* ====================== КАРТКИ ШЛЯХІВ ====================== */
+/* (весь код нижче залишився без змін — тіні на картках і бейджах працюють як і раніше) */
+
 .tracks {
-  padding: 8rem 5% 6rem;
+  padding: 10rem 5% 8rem;
   opacity: 0;
-  transition: opacity 1.5s ease;
+  transition: opacity 1.8s ease;
 }
-
 .tracks.active {
   opacity: 1;
 }
 
 .tracks-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 3rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .track-card {
-  width: 340px;
-  background: #111;
+  background: #111111;
   border: 1px solid #333;
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
   text-align: center;
-  transition: all 0.4s ease;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(40px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .track-card.visible {
@@ -100,147 +126,141 @@
   transform: translateY(0);
 }
 
-.track-card h3 {
-  font: 700 1.6rem "JetBrains Mono", monospace;
-  color: #8b00ff;
-  margin-bottom: 1rem;
+.track-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139, 0, 255, 0.05), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
-.stack {
-  color: #d4af37;
-  font-size: 0.95rem;
-  font-weight: 500;
-  margin: 1rem 0;
+.track-card:hover::before {
+  opacity: 1;
 }
-.desc {
-  color: #aaa;
+
+.track-card h3 {
+  font: 700 1.8rem "JetBrains Mono", monospace;
+  color: #8b00ff;
+  margin-bottom: 1rem;
+  transition: all 0.4s;
+}
+
+.track-card .stack {
+  color: #d4af37;
   font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-weight: 600;
+  margin: 1.2rem 0;
+  letter-spacing: 1px;
+}
+.track-card .desc {
+  color: #aaa;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
 }
 
 .badge {
-  margin-top: 1.5rem;
-  padding: 0.8rem 2rem;
-  font: 600 1rem "JetBrains Mono", monospace;
-  background: transparent;
-  border: 1px solid #808080;
-  border-radius: 8px;
-  color: #808080;
-  cursor: pointer;
-  transition: all 0.4s ease;
   display: inline-block;
+  padding: 0.9rem 2.4rem;
+  font: 600 1.05rem "JetBrains Mono", monospace;
+  color: #808080;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 12px;
+  transition: all 0.5s ease;
 }
 
 .track-card:hover .badge {
-  border-color: #8b00ff;
   color: #8b00ff;
-  background: rgba(139, 0, 255, 0.1);
+  border-color: #8b00ff;
+  background: rgba(139, 0, 255, 0.15);
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(139, 0, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(139, 0, 255, 0.25);
 }
 
-/* Клікабельні картки */
 .track-card[data-path] {
   cursor: pointer;
-  transition: all 0.4s ease;
 }
 
 .track-card[data-path]:hover {
-  transform: translateY(-10px) scale(1.03);
+  transform: translateY(-16px) scale(1.04);
   border-color: #8b00ff;
-  box-shadow: 0 20px 40px rgba(139, 0, 255, 0.3);
+  box-shadow: 0 25px 60px rgba(139, 0, 255, 0.3),
+    0 0 0 1px rgba(139, 0, 255, 0.2);
 }
 
 .track-card[data-path]:hover h3 {
-  color: #8b00ff;
-  text-shadow: 0 0 15px #8b00ff;
+  text-shadow: 0 0 20px #8b00ff;
 }
 
-/* ══════════════════════════════════════
-   КНОПКА «НАВЕРХ» — Пурпурова стрілочка
-   ══════════════════════════════════════ */
-#scroll-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 9999;
-  width: 56px;
-  height: 56px;
-  background: rgba(139, 0, 255, 0.15);
-  border: 2px solid #8b00ff;
-  border-radius: 50%;
-  color: #8b00ff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(139, 0, 255, 0.3);
-}
-
-#scroll-to-top:hover {
-  background: #8b00ff;
-  color: #000;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(139, 0 Rome, 0.5);
-}
-
-#scroll-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* На мобілці — трохи нижче і правіше */
-@media (max-width: 768px) {
-  #scroll-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 48px;
-    height: 48px;
-  }
-  #scroll-to-top svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-/* Адаптив */
+/* ====================== АДАПТИВНІСТЬ ====================== */
 @media (max-width: 1024px) {
-  .track-card {
-    width: 300px;
-  }
   .tracks-container {
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .track-card {
+    padding: 2.5rem 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .track-card {
-    width: 90%;
+  .hero {
+    padding: 10rem 5% 6rem;
   }
   .hero h1 {
-    font-size: 3.5rem;
+    font-size: clamp(3rem, 7vw, 5rem);
   }
   .enter-btn {
-    padding: 1.2rem 3rem;
+    padding: 1.4rem 3.5rem;
     font-size: 1.3rem;
+  }
+  .tracks {
+    padding: 8rem 5% 6rem;
+  }
+  .tracks-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .track-card {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 2.8rem 2rem;
   }
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding: 9rem 5% 5rem;
+  }
   .hero h1 {
     font-size: 2.8rem;
   }
   .enter-btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
   }
   .track-card {
-    padding: 2rem 1.5rem;
+    padding: 2.2rem 1.8rem;
+  }
+  .badge {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .tracks,
+  .track-card,
+  .enter-btn {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .enter-btn::before,
+  .track-card::before {
+    display: none;
   }
 }

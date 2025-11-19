@@ -1,9 +1,8 @@
-/* ══════════════════════════════════════
-   COUNCIL.CSS — РІВЕНЬ 03: РАДА
-   Голограми. Дев'ятеро. Метро-таймлайн.
-   ══════════════════════════════════════ */
+/* ==========================================================================
+   COUNCIL.CSS — РІВЕНЬ 03: РАДА ДЕВ'ЯТИ
+   ========================================================================== */
 
-/* === HERO === */
+/* ====================== HERO ====================== */
 .council-hero {
   min-height: 80vh;
   display: flex;
@@ -29,11 +28,23 @@
   letter-spacing: 2px;
 }
 
-/* === АРХІТЕКТОРИ — ГОЛОГРАМИ === */
+.neon {
+  color: #8b00ff;
+  text-shadow: none;
+}
+
+@keyframes pulse-glow {
+  from {
+    text-shadow: none;
+  }
+  to {
+    text-shadow: none;
+  }
+}
+
+/* ====================== АРХІТЕКТОРИ — ГОЛОГРАМИ ====================== */
 .council-architects {
-  padding: 6rem 5% 4rem;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 100%);
-  position: relative;
+  padding: 3.5rem 5% 4rem;
 }
 
 .architects-container {
@@ -85,7 +96,6 @@
   transform: translate(-50%, -50%);
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, #8b00ff 0%, transparent 70%);
   opacity: 0.3;
   border-radius: 50%;
   animation: glowPulse 2s infinite alternate;
@@ -136,11 +146,29 @@
   box-shadow: 0 5px 15px rgba(139, 0, 255, 0.3);
 }
 
-/* === ТАЙМЛАЙН — МЕТРО-КАРТА === */
+/* ====================== КОЛЬОРИ ЗА ДОМІНІОНАМИ ====================== */
+.architect-card[data-dominion="frontend"] .path,
+.architect-card[data-dominion="frontend"] .blade {
+  color: #8b00ff !important;
+  text-shadow: 0 0 10px #8b00ff;
+}
+
+.architect-card[data-dominion="backend"] .path,
+.architect-card[data-dominion="backend"] .blade {
+  color: #d4af37 !important;
+  text-shadow: 0 0 10px #d4af37;
+}
+
+.architect-card[data-dominion="fullstack"] .path,
+.architect-card[data-dominion="fullstack"] .blade {
+  color: #ff0044 !important;
+  text-shadow: 0 0 15px #ff0044;
+}
+
+/* ====================== ТАЙМЛАЙН — МЕТРО-КАРТА ====================== */
 .council-timeline {
-  padding: 6rem 5% 4rem;
+  padding: 8rem 5% 6rem;
   background: #0a0a0a;
-  position: relative;
 }
 
 .timeline-container {
@@ -152,12 +180,13 @@
 .timeline-line {
   position: absolute;
   top: 50%;
-  left: 0;
-  right: 0;
+  left: 5%;
+  right: 5%;
   height: 4px;
   background: linear-gradient(to right, #8b00ff, #d4af37, #ff0044);
   border-radius: 2px;
   z-index: 1;
+  transform: translateY(-50%);
 }
 
 .timeline-points {
@@ -166,6 +195,7 @@
   align-items: center;
   position: relative;
   z-index: 2;
+  padding: 0 5%;
 }
 
 .point {
@@ -179,15 +209,14 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
   transition: all 0.4s ease;
-  cursor: pointer;
+  cursor: default;
 }
 
 .point.current {
   border-color: #8b00ff;
   box-shadow: 0 0 30px #8b00ff;
-  animation: currentPulse 1.5s infinite alternate;
+  animation: currentPulse 1.8s infinite alternate;
 }
 
 @keyframes currentPulse {
@@ -195,7 +224,7 @@
     box-shadow: 0 0 20px #8b00ff;
   }
   100% {
-    box-shadow: 0 0 40px #8b00ff, 0 0 60px #8b00ff;
+    box-shadow: 0 0 40px #8b00ff, 0 0 60px rgba(139, 0, 255, 0.4);
   }
 }
 
@@ -228,117 +257,110 @@
   }
 }
 
-/* Frontend — Пурпур */
-.architect-card[data-dominion="frontend"] .path,
-.architect-card[data-dominion="frontend"] .blade {
-  color: #8b00ff !important;
-  text-shadow: 0 0 10px #8b00ff;
-}
-
-/* Backend — Червоний */
-.architect-card[data-dominion="backend"] .path,
-.architect-card[data-dominion="backend"] .blade {
-  color: #d4af37 !important;
-  text-shadow: 0 0 10px #d4af37;
-}
-
-/* Fullstack — Золото */
-.architect-card[data-dominion="fullstack"] .path,
-.architect-card[data-dominion="fullstack"] .blade {
-  color: #ff0044 !important;
-  text-shadow: 0 0 15px #ff0044;
-}
-
-/* ══════════════════════════════════════
-   КНОПКА «НАВЕРХ» — Пурпурова стрілочка
-   ══════════════════════════════════════ */
-#scroll-to-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 9999;
-  width: 56px;
-  height: 56px;
-  background: rgba(139, 0, 255, 0.15);
-  border: 2px solid #8b00ff;
-  border-radius: 50%;
-  color: #8b00ff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(139, 0, 255, 0.3);
-}
-
-#scroll-to-top:hover {
-  background: #8b00ff;
-  color: #000;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(139, 0 Rome, 0.5);
-}
-
-#scroll-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* На мобілці — трохи нижче і правіше */
-@media (max-width: 768px) {
-  #scroll-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 48px;
-    height: 48px;
-  }
-  #scroll-to-top svg {
-    width: 24px;
-    height: 24px;
+/* ====================== АДАПТИВНІСТЬ ====================== */
+@media (max-width: 1200px) {
+  .timeline-points {
+    padding: 0 3%;
   }
 }
 
-/* === АДАПТИВ === */
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .architects-container {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
+  .council-hero {
+    min-height: 70vh;
+    padding: 10rem 5% 6rem;
+  }
+
+  .council-hero h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .council-architects {
+    padding: 5rem 5% 3rem;
+  }
+
+  .architect-card {
+    padding: 2rem 1.8rem;
+  }
+
+  .hologram-avatar {
+    width: 180px;
+    height: 180px;
+  }
+
+  .avatar-glow {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Таймлайн стає вертикальним */
   .timeline-points {
     flex-direction: column;
-    gap: 2rem;
+    gap: 3rem;
+    padding: 0;
   }
+
   .timeline-line {
-    height: 2px;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    height: auto;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #8b00ff, #d4af37, #ff0044);
   }
+
   .point {
-    width: 120px;
-    height: 120px;
-  }
-  .year {
-    font-size: 1.1rem;
-  }
-  .point p {
-    font-size: 0.8rem;
+    width: 130px;
+    height: 130px;
   }
 }
 
 @media (max-width: 480px) {
+  .council-hero h1 {
+    font-size: 3.2rem;
+  }
+
   .architect-card {
     padding: 2rem 1.5rem;
   }
+
   .hologram-avatar {
     width: 160px;
     height: 160px;
   }
+
   .avatar-glow {
     width: 180px;
     height: 180px;
+  }
+
+  .point {
+    width: 110px;
+    height: 110px;
+  }
+
+  .year {
+    font-size: 1.1rem;
+  }
+
+  .point p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Повага до користувачів */
+@media (prefers-reduced-motion: reduce) {
+  .architect-card,
+  .point,
+  .avatar-glow {
+    animation: none !important;
+    transition: none !important;
   }
 }

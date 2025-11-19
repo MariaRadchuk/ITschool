@@ -1,0 +1,400 @@
+/* ==========================================================================
+   ACCESS.CSS — Рівень 04: Доступ 
+   ========================================================================== */
+
+/* ====================== БАЗОВІ СТИЛІ (десктоп) ====================== */
+
+.access-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 5%;
+  margin-top: 100px;
+}
+.access-hero h1 {
+  font: 500 clamp(3rem, 7vw, 6rem) "JetBrains Mono", monospace;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.access-hero .subtitle {
+  font: 600 1.3rem/1.6 "Inter", sans-serif;
+  color: #aaa;
+  letter-spacing: 2px;
+}
+
+.neon {
+  color: #8b00ff;
+  text-shadow: none;
+}
+
+@keyframes pulse-glow {
+  from {
+    text-shadow: none;
+  }
+  to {
+    text-shadow: none;
+  }
+}
+
+/* Книга */
+.dark-book-section {
+  padding: 4rem 5%;
+  display: flex;
+  justify-content: center;
+}
+.book {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 620px;
+  transform-style: preserve-3d;
+}
+.book-page {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(to right, #0a0a0f, #111);
+  border: 2px solid #333;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+.left-page {
+  border-radius: 24px 6px 6px 24px;
+}
+.right-page {
+  border-radius: 6px 24px 24px 6px;
+}
+
+.page-inner {
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.academy-photo {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+  filter: brightness(0.75);
+}
+.photo-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, #8b00ff18, transparent 65%);
+  pointer-events: none;
+}
+
+/* Права сторінка */
+.right-page h2 {
+  font: 700 2.1rem "JetBrains Mono", monospace;
+  color: #8b00ff;
+  text-shadow: 0 0 20px #8b00ff;
+  text-align: center;
+}
+.book-text {
+  font: 600 1.35rem/1.9 "Inter", sans-serif;
+  color: #ccc;
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+.address {
+  font-size: 1.7rem;
+  color: #fff;
+  margin: 1rem 0;
+}
+.password .gold {
+  color: #d4af37;
+  font-weight: 700;
+}
+.days {
+  color: #aaa;
+  font-size: 1.3rem;
+}
+
+.book-portals {
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  margin: 2.2rem 0;
+}
+.portal {
+  font: 700 1rem "JetBrains Mono", monospace;
+  color: #8b00ff;
+  padding: 0.7rem 1rem;
+  border: 2px solid #8b00ff;
+  border-radius: 12px;
+  transition: all 0.4s;
+}
+
+.portal:hover {
+  color: #ffffff;
+}
+
+.book-final {
+  font: 600 1.5rem "Inter", sans-serif;
+  color: #888;
+  margin-top: 2rem;
+  text-align: center;
+}
+.book-final .gold {
+  font: 700 2rem "JetBrains Mono", monospace;
+  color: #d4af37;
+  text-shadow: 0 0 25px #d4af37;
+  display: block;
+}
+
+.book-rune {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font: 700 5rem "Uncial Antiqua", cursive;
+  background: linear-gradient(90deg, #8b00ff, #d4af37);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 70px #8b00ff;
+  opacity: 0.32;
+  animation: runeBreathe 6s infinite;
+  z-index: 10;
+}
+
+/* Модалка з руною */
+.rune-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rune-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+.rune-card {
+  position: relative;
+  background: rgba(10, 10, 25, 0.55);
+  backdrop-filter: blur(20px);
+  border: 2px solid #555;
+  border-radius: 32px;
+  padding: 4rem 3.5rem;
+  max-width: 620px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 100px rgba(139, 0, 255, 0.4);
+  transform: scale(0.8);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: auto;
+}
+.rune-modal.active .rune-card {
+  transform: scale(1);
+}
+
+/* Хрестик — тепер ідеальний */
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font: 700 2.5rem "Inter", sans-serif;
+  color: #666;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+.modal-close:hover {
+  color: #ff0044;
+  transform: scale(1.2);
+}
+
+.rune-glow {
+  position: absolute;
+  background: radial-gradient(circle, #8b00ff33, transparent 70%);
+  border-radius: 50%;
+  animation: cardPulse 6s infinite;
+}
+.rune-big {
+  font: 700 7rem "Uncial Antiqua", cursive;
+  background: linear-gradient(135deg, #8b00ff, #d4af37, #ff0044);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: runeBreathe 4s infinite;
+  margin-bottom: 1.5rem;
+}
+.rune-modal h2 {
+  font: 700 2.6rem "JetBrains Mono", monospace;
+  color: #fff;
+  text-shadow: 0 0 30px #8b00ff;
+  margin: 1.5rem 0;
+}
+.rune-meaning {
+  font: 600 1.4rem/1.7 "Inter", sans-serif;
+  color: #ddd;
+}
+.rune-border-top,
+.rune-border-bottom {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #8b00ff, transparent);
+  transform: translateX(-50%);
+  box-shadow: 0 0 20px #8b00ff;
+}
+.rune-border-top {
+  top: 28px;
+}
+.rune-border-bottom {
+  bottom: 28px;
+}
+
+/* Анімації */
+@keyframes runeBreathe {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+@keyframes cardPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* ====================== АДАПТИВ (всі медіа-запити — тільки тут, в кінці) ====================== */
+
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .hero-buttons .enter-btn {
+    min-width: 320px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .book {
+    height: 560px;
+    transform: rotateX(6deg) rotateY(-3deg);
+  }
+  .right-page h2 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 868px) {
+  .book {
+    height: 520px;
+  }
+  .academy-photo {
+    max-height: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .book {
+    flex-direction: column;
+    height: auto;
+    transform: none;
+    max-width: 560px;
+  }
+  .book-page {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    border-radius: 20px !important;
+  }
+  .page-inner {
+    padding: 2rem;
+  }
+  .academy-photo {
+    max-height: 380px;
+  }
+  .right-page h2 {
+    font-size: 1.8rem;
+  }
+  .book-text {
+    font-size: 1.25rem;
+  }
+  .book-rune {
+    font-size: 4.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .modal-close {
+    width: 48px;
+    height: 48px;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2rem;
+  }
+  .rune-big {
+    font-size: 7.5rem;
+  }
+  .rune-modal h2 {
+    font-size: 2.2rem;
+  }
+  .rune-card {
+    padding: 3rem 2rem;
+  }
+  .academy-photo {
+    max-height: 300px;
+  }
+  .book-portals {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .portal {
+    width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .access-hero h1 {
+    font-size: 2.8rem;
+  }
+  .right-page h2 {
+    font-size: 1.6rem;
+  }
+  .book-text {
+    font-size: 1.15rem;
+  }
+  .academy-photo {
+    max-height: 260px;
+  }
+}
