@@ -1,247 +1,100 @@
-// ═══════════════════════════════════════════════════════════
-// public/js/PATHS.JS — РІВЕНЬ 02: ШЛЯХИ
-// Навігація, вівтарі домініонів, модалки курсів, тости.
-// ═══════════════════════════════════════════════════════════
+// public/js/paths.js — ФІНАЛЬНА ВЕРСІЯ (всі 6 клинків працюють!)
 
+document.addEventListener('DOMContentLoaded', () => {
+  const COURSE_DATA = {
+    frontend: [
+      { title: "Клинок Перший: Реактивний Розлом", stack: "React 19 → Zustand → Signals → Three.js + WebGL", desc: "Портфоліо, що ламає 4090. 120 FPS. 60k+ зірок.", badge: "12 тижнів", features: ["3D-анімації на 120 FPS","Next-level оптимізація","Deep React Patterns"] },
+      { title: "Клинок Другий: Портал Безсмертя", stack: "Next.js 15 + RSC + Edge + GSAP + Framer", desc: "Сайт-легенда. Awwwards «Site of the Year».", badge: "14 тижнів", features: ["Edge streaming","GSAP mastery","Realtime transitions"] }
+    ],
+    backend: [
+      { title: "Клинок Перший: Пекельний Язик", stack: "Rust + Actix + Tokio + SQLx + WASM", desc: "API: 0.4 мс. 1M rps. Без простоїв.", badge: "10 тижнів", features: ["Rust async core","WASM pipelines","High-load strategies"] },
+      { title: "Клинок Другий: Тіньовий Моноліт", stack: "Node 22 + Bun + Edge + Redis + Kafka", desc: "SaaS: від 0 до $25k MRR за 90 днів.", badge: "11 тижнів", features: ["Edge-ready Node","Kafka streams","Production scaling"] }
+    ],
+    fullstack: [
+      { title: "Клинок Перший: Трон Турбореакт", stack: "T3 Stack + Next.js 15 + tRPC + Prisma + Tailwind", desc: "Свій Vercel. Свій edge. Свій закон.", badge: "16 тижнів", features: ["Full T3 pipeline","SSR/Edge balancing","Enterprise patterns"] },
+      { title: "Клинок Другий: Закон Абсолюту", stack: "Fullstack + AI Agents + Cursor.sh + Claude", desc: "Ти не пишеш код. Ти наказуєш.", badge: "18 тижнів", features: ["AI-driven dev","Agentic workflows","Hybrid architectures"] }
+    ]
+  };
 
-
-// ==========================================================
-// 1. ПЛАВНИЙ ПЕРЕХІД ДО СЕКЦІЙ
-// ==========================================================
-
-function smoothScrollTo(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  el.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-}
-
-// ==========================================================
-// 2. ВІДКРИТТЯ ВІВТАРІВ ДОМІНІОНІВ
-// ==========================================================
-
-const dominionCards = document.querySelectorAll(".dominion-card");
-const altars = document.querySelectorAll(".altar");
-
-dominionCards.forEach(card => {
-  card.addEventListener("click", () => {
-    const dom = card.dataset.dominion;
-    const altar = document.querySelector(`#${dom}-altar`);
-    if (altar) altar.classList.add("active");
-  });
-});
-
-
-
-// ==========================================================
-// 3. ЗАКРИТТЯ ВІВТАРІВ
-// ==========================================================
-
-const altarCloseButtons = document.querySelectorAll(".altar-close");
-altarCloseButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.closest(".altar")?.classList.remove("active");
-  });
-});
-
-
-
-// ==========================================================
-// 4. МОДАЛЬНЕ ВІКНО КУРСУ
-// ==========================================================
-
-const courseModal = document.getElementById("course-modal");
-const modalClose = document.getElementById("modal-close");
-
-const modalTitle = document.getElementById("modal-title");
-const modalStack = document.getElementById("modal-stack");
-const modalDesc = document.getElementById("modal-desc");
-const modalBadge = document.getElementById("modal-badge");
-const modalFeatures = document.getElementById("modal-features");
-
-
-// Дані курсів можна винести в окремий файл, але поки локально.
-const COURSE_DATA = {
-  frontend: [
-    {
-      title: "Клинок Перший: Реактивний Розлом",
-      stack: "React 19 → Zustand → Signals → Three.js + WebGL",
-      desc: "Портфоліо, що ламає 4090. 120 FPS. 60k+ зірок.",
-      badge: "12 тижнів",
-      features: [
-        "3D-анімації на 120 FPS",
-        "Next-level оптимізація",
-        "Deep React Patterns"
-      ]
-    },
-    {
-      title: "Клинок Другий: Портал Безсмертя",
-      stack: "Next.js 15 + RSC + Edge + GSAP + Framer",
-      desc: "Сайт-легенда. Awwwards «Site of the Year».",
-      badge: "14 тижнів",
-      features: [
-        "Edge streaming",
-        "GSAP mastery",
-        "Realtime transitions"
-      ]
+  // Відкриття вівтаря
+function openAltar(dominion) {
+    const altar = document.getElementById(`${dominion}-altar`);
+    if (altar) {
+      altar.classList.add('active');
+      setTimeout(() => altar.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
     }
-  ],
+  }
 
-  backend: [
-    {
-      title: "Клинок Перший: Пекельний Язик",
-      stack: "Rust + Actix + Tokio + SQLx + WASM",
-      desc: "API: 0.4 мс. 1M rps. Без простоїв.",
-      badge: "10 тижнів",
-      features: [
-        "Rust async core",
-        "WASM pipelines",
-        "High-load strategies"
-      ]
-    },
-    {
-      title: "Клинок Другий: Тіньовий Моноліт",
-      stack: "Node 22 + Bun + Edge + Redis + Kafka",
-      desc: "SaaS: від 0 до $25k MRR за 90 днів.",
-      badge: "11 тижнів",
-      features: [
-        "Edge-ready Node",
-        "Kafka streams",
-        "Production scaling"
-      ]
-    }
-  ],
+  // Клік по домініону
+  document.querySelectorAll('.dominion-card').forEach(card => {
+    card.addEventListener('click', () => openAltar(card.dataset.dominion));
+  });
 
-  fullstack: [
-    {
-      title: "Клинок Перший: Трон Турбореакт",
-      stack: "T3 Stack + Next.js 15 + tRPC + Prisma + Tailwind",
-      desc: "Свій Vercel. Свій edge. Свій закон.",
-      badge: "16 тижнів",
-      features: [
-        "Full T3 pipeline",
-        "SSR/Edge balancing",
-        "Enterprise patterns"
-      ]
-    },
-    {
-      title: "Клинок Другий: Закон Абсолюту",
-      stack: "Fullstack + AI Agents + Cursor.sh + Claude",
-      desc: "Ти не пишеш код. Ти наказуєш.",
-      badge: "18 тижнів",
-      features: [
-        "AI-driven dev",
-        "Agentic workflows",
-        "Hybrid architectures"
-      ]
-    }
-  ]
-};
+  // Закриття вівтарів
+  document.querySelectorAll('.altar-close').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.altar').classList.remove('active'));
+  });
 
+  // ─────────────────────── ГОЛОВНЕ ВИПРАВЛЕННЯ КОЛЬОРУ ───────────────────────
+  document.querySelectorAll('.altar').forEach(altar => {
+    const blades = altar.querySelectorAll('.blade-card');
+    const dominion = altar.dataset.dominion;               // ← беремо назву домініону
 
+    blades.forEach((blade, index) => {
+      blade.addEventListener('click', e => {
+        e.stopPropagation();
 
-// ==========================================================
-// 5. ВІДКРИТТЯ МОДАЛКИ КУРСУ (BLADE-CARD)
-// ==========================================================
+        const type = blade.dataset.course;
+        const data = COURSE_DATA[type][index];
+        if (!data) return;
 
-const bladeCards = document.querySelectorAll(".blade-card");
+        // Заповнюємо модалку
+        document.getElementById('modal-title').textContent = data.title;
+        document.getElementById('modal-stack').textContent = data.stack;
+        document.getElementById('modal-desc').textContent  = data.desc;
+        document.getElementById('modal-badge').textContent = data.badge;
+        document.getElementById('modal-features').innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
 
-bladeCards.forEach((card, index) => {
-  card.addEventListener("click", () => {
-    const type = card.dataset.course;
+const modal = document.getElementById('course-modal');
 
-    const data = COURSE_DATA[type][index];
-    if (!data) return;
+// Очищаємо старі класи домініонів
+modal.classList.remove('frontend', 'backend', 'fullstack');
 
-    modalTitle.textContent = data.title;
-    modalStack.textContent = data.stack;
-    modalDesc.textContent = data.desc;
-    modalBadge.textContent = data.badge;
+// Додаємо актуальний клас
+modal.classList.add(dominion);
 
-    modalFeatures.innerHTML = "";
-    data.features.forEach(f => {
-      const li = document.createElement("li");
-      li.textContent = f;
-      modalFeatures.appendChild(li);
+// Додаємо active
+modal.classList.add('active');
+      });
     });
-
-    courseModal.classList.add("active");
   });
-});
+  // ─────────────────────────────────────────────────────────────────────
 
-modalClose.addEventListener("click", () => {
-  courseModal.classList.remove("active");
-});
-
-
-
-// ==========================================================
-// 6. ТОСТ «ТИ УВІЙШОВ У ТЕМРЯВУ»
-// ==========================================================
-
-const enterDarkness = document.getElementById("enter-darkness");
-const darknessToast = document.getElementById("darkness-toast");
-
-if (enterDarkness) {
-  enterDarkness.addEventListener("click", () => {
-    darknessToast.classList.add("active");
-
-    setTimeout(() => {
-      darknessToast.classList.remove("active");
-    }, 2600);
+  // Закриття модалки
+  document.getElementById('modal-close')?.addEventListener('click', () => {
+    document.getElementById('course-modal').classList.remove('active');
   });
-}
+  document.getElementById('course-modal')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
+  });
 
+  // Тост, кнопки, підсвітка меню, хеш — все як раніше
+  document.getElementById('enter-darkness')?.addEventListener('click', () => {
+    const toast = document.getElementById('darkness-toast');
+    toast.classList.add('active');
+    setTimeout(() => toast.classList.remove('active'), 2800);
+  });
 
+  document.getElementById('scroll-to-architects')?.addEventListener('click', () => {
+    document.querySelector('.dominions').scrollIntoView({ behavior: 'smooth' });
+  });
 
-// ==========================================================
-// 7. КНОПКА «ВГОРУ»
-// ==========================================================
+  document.querySelectorAll('.header-nav a, .footer-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === 'paths');
+  });
 
-const scrollTopBtn = document.getElementById("scroll-to-top");
-if (scrollTopBtn) {
-  scrollTopBtn.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  );
-}
-
-// ==========================================================
-// 8. ІНІЦІАЛІЗАЦІЯ ПРИ СТАРТІ
-// ==========================================================
-window.addEventListener('load', () => {
-  // Перевіряємо, чи ми прийшли з index.html
-  const cameFromHome = document.referrer && (
-    document.referrer.includes('/index.html') || 
-    document.referrer.includes('/') && !document.referrer.includes('/pages/')
-  );
-
-  if (!cameFromHome) return;
-
-  const hash = window.location.hash.slice(1);
-  if (hash && ['frontend', 'backend', 'fullstack'].includes(hash)) {
-    // Додаємо невелику затримку, щоб DOM встиг
-    setTimeout(() => openAltar(hash), 100);
+  const hash = location.hash.slice(1);
+  if (hash && ['frontend','backend','fullstack'].includes(hash)) {
+    setTimeout(() => openAltar(hash), 500);
   }
 });
-
-// ══════════════════════════════════════
-// 9. КНОПКА "ОБЕРИ СВІЙ ШЛЯХ" — ПЕРЕХІД ДО ДОМІНІОНІВ
-// ══════════════════════════════════════
-const scrollBtn = document.getElementById('scroll-to-architects'); // ← НОВИЙ ID!
-if (scrollBtn) {
-  scrollBtn.addEventListener('click', () => {
-    const dominionsSection = document.querySelector('.dominions');
-    const header = document.querySelector('.arcane-header');
-    const headerHeight = header ? header.offsetHeight : 0;
-
-    if (dominionsSection) {
-      window.scrollTo({
-        top: dominionsSection.offsetTop - headerHeight - 20,
-        behavior: 'smooth'
-      });
-    }
-  });
-}

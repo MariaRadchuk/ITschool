@@ -126,19 +126,6 @@
   transform: translateY(0);
 }
 
-.track-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(139, 0, 255, 0.05), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.track-card:hover::before {
-  opacity: 1;
-}
-
 .track-card h3 {
   font: 700 1.8rem "JetBrains Mono", monospace;
   color: #8b00ff;
@@ -171,27 +158,50 @@
   transition: all 0.5s ease;
 }
 
-.track-card:hover .badge {
-  color: #8b00ff;
-  border-color: #8b00ff;
-  background: rgba(139, 0, 255, 0.15);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(139, 0, 255, 0.25);
-}
-
 .track-card[data-path] {
   cursor: pointer;
 }
 
-.track-card[data-path]:hover {
-  transform: translateY(-16px) scale(1.04);
-  border-color: #8b00ff;
-  box-shadow: 0 25px 60px rgba(139, 0, 255, 0.3),
-    0 0 0 1px rgba(139, 0, 255, 0.2);
+/* ====================== КОЛЬОРОВІ ТЕМИ ДЛЯ ГОЛОВНОЇ ====================== */
+.track-card[data-dominion="frontend"] {
+  --accent: #8b00ff;
+}
+.track-card[data-dominion="backend"] {
+  --accent: #d4af37;
+}
+.track-card[data-dominion="fullstack"] {
+  --accent: #ff0044;
 }
 
-.track-card[data-path]:hover h3 {
-  text-shadow: 0 0 20px #8b00ff;
+.track-card h3,
+.track-card:hover .badge,
+.track-card[data-path]:hover {
+  color: var(--accent) !important;
+  text-shadow: 0 0 20px var(--accent);
+}
+
+.track-card .badge,
+.track-card[data-path]:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(var(--accent), 0.25);
+}
+
+.track-card[data-path]:hover {
+  border-color: var(--accent);
+  box-shadow: 0 25px 60px rgba(var(--accent), 0.3),
+    0 0 0 1px rgba(var(--accent), 0.2);
+}
+
+.track-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent), 0.1),
+    transparent 60%
+  );
+}
+
+.track-card:hover::before {
+  opacity: 1;
 }
 
 /* ====================== АДАПТИВНІСТЬ ====================== */
