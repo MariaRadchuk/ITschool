@@ -1,119 +1,91 @@
-// ═══════════════════════════════════════════════════════════
-// public/js/COUNCIL.JS — РІВЕНЬ 03: РАДА
-// ═══════════════════════════════════════════════════════════
-
 document.addEventListener('DOMContentLoaded', () => {
-  // ══════════════════════════════════════
-  // 1. ГОЛОГРАФІЧНІ АВАТАРИ З КОЛЬОРАМИ ШЛЯХІВ
-  // ══════════════════════════════════════
-  // Вибираємо всі canvas-елементи, які відображають аватари
+   // ─────────────────────── ГОЛОГРАФІЧНІ АВАТАРИ ───────────────────────
   const avatars = document.querySelectorAll('.hologram-avatar');
 
   avatars.forEach((avatar, index) => {
-    // Отримуємо батьківську картку архітектора
-    const card = avatar.closest('.architect-card');
-    const dominion = card?.dataset.dominion || 'founder'; // founders без домініону
+    const card = avatar.closest('.architect-card');           // картка ментора
+    const isFounder = card.classList.contains('founder');     // чи це засновник?
+    const dominion = card.dataset.dominion || 'founder';      // frontend / backend / fullstack
 
-    // Визначаємо базовий колір залежно від домініону
-    let baseColor = '#8b00ff'; // стандартний фіолетовий
-    if (dominion === 'backend') baseColor = '#ff0044'; // червоний
-    if (dominion === 'fullstack') baseColor = '#d4af37'; // золотий
-    if (card.classList.contains('founder')) baseColor = '#d4af37'; // засновники — золотий
+    // Визначаємо основний колір залежно від Шляху
+    let baseHue = 280; // фіолетовий — стандарт для frontend і засновників
+    if (dominion === 'backend')    baseHue = 0;    // червоний
+    if (dominion === 'fullstack')  baseHue = 40;   // золотий
 
     const ctx = avatar.getContext('2d');
     const centerX = avatar.width / 2;
     const centerY = avatar.height / 2;
-    const radius = card.classList.contains('founder') ? 90 : 75;
-    const runes = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗ'.split('');
+    const radius = isFounder ? 90 : 75;                     // засновники — більші аватари
+    const runes = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗ'.split(''); // руни Ордену
+    let rotation = 0;                                       // кут обертання кола
+    let time = index * 15;                                  // зсув анімації — щоб не синхронно
 
-    let rotation = 0; // початковий кут обертання рун
-    let time = index * 10; // зсув для унікальності анімації
+    const drawHologram = () => {
+      ctx.clearRect(0, 0, avatar.width, avatar.height);     // очищаємо попередній кадр
 
-    const drawAvatar = () => {
-      // Очищуємо canvas
-      ctx.clearRect(0, 0, avatar.width, avatar.height);
-
-      // Налаштовуємо шрифт для рун
-      ctx.font = card.classList.contains('founder') ? 'bold 28px "Uncial Antiqua"' : 'bold 24px "Uncial Antiqua"';
+      // Налаштування шрифту рун
+      ctx.font = isFounder 
+        ? 'bold 28px "Uncial Antiqua"' 
+        : 'bold 24px "Uncial Antiqua"';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // Малюємо 9 рун навколо центру
+      // Малюємо 9 рун по колу 
       for (let i = 0; i < 9; i++) {
-        const angle = (rotation + (i / 9) * Math.PI * 2) % (Math.PI * 2);
+        const angle = rotation + (i / 9) * Math.PI * 2;
         const x = centerX + Math.cos(angle) * radius;
         const y = centerY + Math.sin(angle) * radius;
-        const rune = runes[Math.floor(Math.random() * runes.length)];
+
+        // Пульсуючий колір — магія оживає
+        const hue = (baseHue + time + i * 35) % 360;
+        ctx.fillStyle = `hsla(${hue}, 100%, 65%, 0.92)`;
+        ctx.shadowColor = ctx.fillStyle;
+        ctx.shadowBlur = isFounder ? 35 : 22;
 
         ctx.save();
         ctx.translate(x, y);
-        ctx.rotate(angle);
-
-        // Колір руни з пульсацією
-        const hue = (time * 2 + i * 40) % 360;
-        ctx.fillStyle = `hsla(${hue}, 100%, 60%, 0.9)`;
-        ctx.shadowColor = ctx.fillStyle;
-        ctx.shadowBlur = card.classList.contains('founder') ? 30 : 20;
-        ctx.fillText(rune, 0, 0);
+        ctx.rotate(angle + Math.PI / 2); // руна дивиться назовні
+        ctx.fillText(runes[Math.floor(Math.random() * runes.length)], 0, 0);
         ctx.restore();
       }
 
-      rotation += 0.02; // обертання аватару
-      time += 1;
-      requestAnimationFrame(drawAvatar); // рекурсивно анімувати
+      // Анімація: повільне обертання + пульсація кольору
+      rotation += 0.015;
+      time += 1.2;
+      requestAnimationFrame(drawHologram);
     };
 
-    drawAvatar(); // запускаємо анімацію
+    drawHologram(); // запускаємо голограму
   });
 
-  // ══════════════════════════════════════
-  // 2. АНІМАЦІЯ ПОЯВИ КАРТОК ПРИ СКРОЛІ
-  // ══════════════════════════════════════
-  // IntersectionObserver додає клас .visible при вході картки в viewport
+   // ─────────────────────── ПЛАВНА ПОЯВА КАРТОК МЕНТОРІВ ПРИ СКРОЛІ ───────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible'); // додаємо анімацію появи
+      }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.15 }); // спрацьовує, коли 15% картки видно
 
-  document.querySelectorAll('.architect-card').forEach(card => observer.observe(card));
+  document.querySelectorAll('.architect-card').forEach(card => {
+    observer.observe(card);
+  });
 
-  // ══════════════════════════════════════
-  // 3. ТАЙМЛАЙН — МИГАННЯ ПОТОЧНОГО ПУНКТУ
-  // ══════════════════════════════════════
-  const currentPoint = document.querySelector('.point.current .rune-blink');
-  if (currentPoint) {
-    currentPoint.style.animation = 'blink 1s infinite'; // CSS-анімація блимання
+   // ─────────────────────── МИГАННЯ РУНИ "ТИ ТУТ" НА ТАЙМЛАЙНІ ───────────────────────
+  const currentRune = document.querySelector('.point.current .rune-blink');
+  if (currentRune) {
+    // Руна блимає — це знак, що адепт вже в Ордені
+    currentRune.style.animation = 'blink 1.2s infinite';
+  }
+
+   // ─────────────────────── КНОПКА "ОБЕРИ СВОГО МЕНТОРА" ───────────────────────
+  const chooseMentorBtn = document.getElementById('scroll-to-architects');
+  if (chooseMentorBtn) {
+    chooseMentorBtn.addEventListener('click', () => {
+      document.querySelector('.council-architects').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
   }
 });
-
-// ══════════════════════════════════════
-// ДОПОМОЖНА ФУНКЦІЯ: HEX → RGB
-// ══════════════════════════════════════
-function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
-}
-
-// ══════════════════════════════════════
-// КНОПКА "ОБЕРИ СВІЙ ШЛЯХ" — ПЕРЕХІД ДО МЕНТОРІВ
-// ══════════════════════════════════════
-const scrollBtn = document.getElementById('scroll-to-architects');
-if (scrollBtn) {
-  scrollBtn.addEventListener('click', () => {
-    const architectsSection = document.querySelector('.council-architects');
-    const header = document.querySelector('.arcane-header');
-    const headerHeight = header ? header.offsetHeight : 0;
-
-    if (architectsSection) {
-      window.scrollTo({
-        top: architectsSection.offsetTop - headerHeight - 20, // відступ для хедера
-        behavior: 'smooth'
-      });
-    }
-  });
-}

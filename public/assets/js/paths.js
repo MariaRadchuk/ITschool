@@ -1,8 +1,5 @@
-// public/assets/js/paths.js 
-
 let COURSE_DATA = {};
 
-// Завантажуємо дані з JSON
 fetch('/public/data/courses.json')
   .then(res => {
     if (!res.ok) throw new Error('Не вдалося завантажити курси');
@@ -35,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => btn.closest('.altar').classList.remove('active'));
   });
 
-  // ─────────────────────── КЛІКИ ПО КЛИНКАХ + КОЛЬОРИ ───────────────────────
+  // ─────────────────────── КЛІКИ ПО ALTAR + КОЛЬОРИ ───────────────────────
   document.querySelectorAll('.altar').forEach(altar => {
     const blades = altar.querySelectorAll('.blade-card');
     const dominion = altar.dataset.dominion;

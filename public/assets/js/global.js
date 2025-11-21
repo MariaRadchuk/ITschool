@@ -1,21 +1,6 @@
-// ═══════════════════════════════════════════════════════════
-// public/js/GLOBAL.JS — РІВЕНЬ 01: ПРОБУДЖЕННЯ
-// Головний глобальний JS, який керує:
-// — Matrix Rain фоном
-// — Анімаціями Hero та Track-карток
-// — Роботою кнопки "Enter the Void"
-// — Бургер-меню
-// — Плавним скролом
-// — Анімацією карток при появі
-// — Активним пунктом меню
-// — Кнопкою "Вгору"
-// ═══════════════════════════════════════════════════════════
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  // =========================================================
-  // MATRIX RAIN — ефект «рунічного дощу» на фоні
-  // =========================================================
+   // ─────────────────────── MATRIX RAIN ───────────────────────
   const canvas = document.getElementById('matrix');
 
   if (canvas) {
@@ -81,10 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(drawMatrix, 50);
   }
 
-  // =========================================================
-  // HERO & TRACKS — плавна поява після завантаження сторінки
-  // =========================================================
-
+   // ─────────────────────── HERO & TRACKS ───────────────────────
   const hero = document.getElementById('hero');
   if (hero) hero.style.opacity = '1';
 
@@ -98,9 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // =========================================================
-  // КНОПКА "ENTER THE VOID" — скрол до секції Track-карток
-  // =========================================================
+  // ─────────────────────── УВІЙТИ В ТЕМРЯВУ ───────────────────────
   const enterBtn = document.getElementById('enter-btn');
 
   enterBtn?.addEventListener('click', (e) => {
@@ -118,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // =========================================================
-  // БУРГЕР-МЕНЮ — відкриття/закриття мобільної навігації
-  // =========================================================
+  // ─────────────────────── БУРГЕР-МЕНЮ ───────────────────────
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.header-nav');
 
@@ -129,9 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.classList.toggle('active');
   });
 
-  // =========================================================
-  // ПЛАВНИЙ СКРОЛ ДО ЯКОРІВ (href="#...")
-  // =========================================================
+    // ─────────────────────── всі посилання на сторінці виду <a href="#something"> працюють плавно ───────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -143,10 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================================
-  // АВТО-ПОЯВА КАРТОК ПРИ СКРОЛІ (IntersectionObserver)
-  // =========================================================
-
+  // ─────────────────────── АВТО-ПОЯВА КАРТОК ПРИ СКРОЛІ ───────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -159,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(card);
   });
 
-  // =========================================================
-  // КАРТКИ ШЛЯХІВ — клікабельні, ведуть на інші сторінки
-  // =========================================================
+  // ─────────────────────── КАРТКИ ШЛЯХІВ — клікабельні, ведуть на інші сторінки ───────────────────────
   document.querySelectorAll('.track-card[data-path]').forEach(card => {
     card.style.cursor = 'pointer';
 
@@ -171,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = path;
     });
 
-    // Легка hover-анімація (JS-версія)
+    // Легка hover-анімація 
     card.addEventListener('mouseenter', () => {
       card.style.transform = 'translateY(-10px) scale(1.03)';
       card.style.boxShadow = '0 20px 40px rgba(139, 0, 255, 0.3)';
@@ -184,9 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// =========================================================
-// ПОЗНАЧЕННЯ АКТИВНОЇ СТОРІНКИ В МЕНЮ
-// =========================================================
+  // ─────────────────────── ПОЗНАЧЕННЯ АКТИВНОЇ СТОРІНКИ В МЕНЮ ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   // Визначаємо назву поточної сторінки
   const currentPage =
@@ -208,9 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// =========================================================
-// КНОПКА «НАВЕРХ» (scroll-to-top)
-// =========================================================
+  // ─────────────────────── КНОПКА «НАВЕРХ» ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   const scrollBtn = document.getElementById('scroll-to-top');
 
