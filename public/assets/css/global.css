@@ -8,7 +8,6 @@
   inherits: false;
 }
 
-/* ====================== БАЗОВІ СТИЛІ ====================== */
 *,
 *::before,
 *::after {
@@ -35,7 +34,6 @@ body {
   position: relative;
 }
 
-/* Фоновий ефект "Матриці" */
 #matrix {
   position: fixed;
   inset: 0;
@@ -64,10 +62,6 @@ body {
 .gold {
   color: #d4af37;
   font-weight: 700;
-}
-.neon {
-  color: #8b00ff;
-  text-shadow: 0 0 20px #8b00ff;
 }
 
 h1,
@@ -151,7 +145,6 @@ p {
   width: 100%;
 }
 
-/* Бургер-меню */
 .burger {
   display: none;
   font-size: 2.2rem;

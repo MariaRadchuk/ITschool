@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arcane Code | Рівень 01 — Пробудження</title>
-
     <!-- Стилі -->
     <link rel="stylesheet" href="public/assets/css/global.css" />
     <link rel="stylesheet" href="public/assets/css/home.css" />
-
     <!-- Шрифти -->
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&family=Uncial+Antiqua&display=swap"
@@ -16,7 +14,7 @@
     />
   </head>
   <body data-page="home">
-    <!-- Header -->
+    <!-- ==================== HEADER ==================== -->
     <header class="arcane-header">
       <div class="header-content">
         <div class="header-brand">
@@ -33,64 +31,117 @@
       </div>
     </header>
 
-    <!-- Герой -->
+    <!-- ==================== HERO ==================== -->
     <section class="hero" id="hero">
       <div class="hero-content">
         <h1>
           <span class="line">АРХІТЕКТОРИ НЕ НАРОДЖУЮТЬСЯ</span>
           <span class="line neon">ЇХ КОМПІЛЮЮТЬ</span>
         </h1>
+
+        <!-- Маніфест -->
+        <div class="manifesto">
+          <p class="line">Ти хочеш стати Архітектором.</p>
+          <p class="line neon">
+            Ти хочеш писати код, від якого тремтять сервери.
+          </p>
+        </div>
+
         <button class="enter-btn" id="enter-btn">
           <span>УВІЙТИ В ТЕМРЯВУ</span>
         </button>
       </div>
     </section>
 
-    <!-- Картки — клікабельні -->
-    <section class="tracks" id="tracks">
-      <div class="tracks-container">
-        <!-- FRONTEND DOMINION -->
-        <!-- Заміни свої три картки на ці (додай data-dominion) -->
-        <div
-          class="track-card"
-          data-path="/pages/paths.html#frontend"
-          data-dominion="frontend"
-        >
-          <h3>FRONTEND DOMINION</h3>
-          <p class="stack">React 19 + Three.js + GSAP</p>
-          <p class="desc">
-            Портфоліо, що руйнує реальність. 3D на 120 FPS. 60к+ зірок.
-          </p>
-          <div class="badge">ОБРАТИ ШЛЯХ</div>
-        </div>
-
-        <div
-          class="track-card"
-          data-path="/pages/paths.html#backend"
-          data-dominion="backend"
-        >
-          <h3>BACKEND FORTRESS</h3>
-          <p class="stack">Node 22 + Rust (Actix) + Edge</p>
-          <p class="desc">
-            SaaS від 0 до $10k MRR. 0.8мс затримки. Нуль простоїв.
-          </p>
-          <div class="badge">ОБРАТИ ШЛЯХ</div>
-        </div>
-
-        <div
-          class="track-card"
-          data-path="/pages/paths.html#fullstack"
-          data-dominion="fullstack"
-        >
-          <h3>FULLSTACK EMPIRE</h3>
-          <p class="stack">Next.js 15 + App Router + tRPC</p>
-          <p class="desc">Свій Vercel. Свій edge. Свій світ. Свій закон.</p>
-          <div class="badge">ОБРАТИ ШЛЯХ</div>
+    <!-- ==================== ПРОРОЦТВО ДЕВ’ЯТИ ==================== -->
+    <section class="prophecy">
+      <div class="prophecy-content">
+        <h2 class="section-title">Пророцтво Дев’яти</h2>
+        <div class="runes-large">ᚠᚢᚦᚨᚱᚲ ᚷᚹᚺᚾᛁᛃ ᛈᛉᛊᛏᛒᛖᛗ</div>
+        <p class="prophecy-text">
+          У 2025 році з’явиться той, хто зламає Vercel власним сервером.<br />
+          Той, хто змусить React працювати на 120 FPS у браузері 2015 року.<br />
+          Той, хто напише бекенд на Rust’і й заробить $100k MRR за 90 днів.<br /><br />
+          <span class="neon">Це будеш ти.</span>
+        </p>
+        <div class="nine-seal">
+          <span>Орден Дев’яти вже обрав тебе.</span>
         </div>
       </div>
     </section>
 
-    <!-- Футер -->
+    <!-- ==================== ТРИ ДОМІНІОНИ (з кольорами!) ==================== -->
+    <section class="tracks" id="tracks">
+      <div class="tracks-container">
+        <div
+          class="track-card"
+          data-path="/public/pages/paths.html#frontend"
+          data-dominion="frontend"
+        >
+          <h3>FRONTEND DOMINION</h3>
+          <p class="tagline">Портали в безсмертя</p>
+          <div class="rune">ᚠᚢᚦ</div>
+        </div>
+
+        <div
+          class="track-card"
+          data-path="/public/pages/paths.html#backend"
+          data-dominion="backend"
+        >
+          <h3>BACKEND FORTRESS</h3>
+          <p class="tagline">Моноліти, що не падають</p>
+          <div class="rune">ᚱᚲᚷ</div>
+        </div>
+
+        <div
+          class="track-card"
+          data-path="/public/pages/paths.html#fullstack"
+          data-dominion="fullstack"
+        >
+          <h3>FULLSTACK EMPIRE</h3>
+          <p class="tagline">Імперії, що панують</p>
+          <div class="rune">ᚹᚺᚾ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ТІ, ХТО ВЖЕ ПРОЙШОВ ==================== -->
+    <section class="chosen">
+      <h2 class="section-title">Ті, хто вже ступив у Темряву</h2>
+      <div class="chosen-grid">
+        <div class="chosen-card">
+          <div class="avatar">А</div>
+          <p class="name">Анонімний Архітектор</p>
+          <p class="result">+420k ₴/міс після Клинка Другого (Fullstack)</p>
+        </div>
+        <div class="chosen-card">
+          <div class="avatar">К</div>
+          <p class="name">Ковалевський</p>
+          <p class="result">Портфоліо з Three.js — 68k зірок на GitHub</p>
+        </div>
+        <div class="chosen-card">
+          <div class="avatar">Т</div>
+          <p class="name">Тіньовий Моноліт</p>
+          <p class="result">SaaS на Node+Rust — $27k MRR за 74 дні</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ФІНАЛЬНИЙ ЗАКЛИК ==================== -->
+    <section class="final-call">
+      <div class="final-content">
+        <p class="final-text">
+          <span class="neon">Час обирати.</span><br />
+          Три Домініони чекають.<br />
+          Тільки один шлях — твій.
+        </p>
+        <button class="enter-btn" id="enter-btn-bottom">
+          <span>УВІЙТИ В ТЕМРЯВУ</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== ФУТЕР ==================== -->
     <footer class="arcane-footer">
       <div class="footer-content">
         <div class="footer-brand">
@@ -112,7 +163,7 @@
       </div>
     </footer>
 
-    <!-- КНОПКА НАВЕРХ -->
+    <!-- ==================== КНОПКА НАВЕРХ ==================== -->
     <button id="scroll-to-top" aria-label="Повернутися наверх">
       <svg
         width="28"
@@ -128,10 +179,10 @@
       </svg>
     </button>
 
-    <!-- Матриця -->
+    <!-- ==================== MATRIX RAIN ==================== -->
     <canvas id="matrix"></canvas>
 
-    <!-- JS -->
+    <!-- ==================== JS ==================== -->
     <script type="module" src="public/assets/js/global.js"></script>
   </body>
 </html>

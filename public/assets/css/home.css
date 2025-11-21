@@ -1,8 +1,8 @@
 /* ==========================================================================
-   HOME.CSS — РІВЕНЬ 01: ПРОБУДЖЕННЯ
+   HOME.CSS — РІВЕНЬ 01: ПРОБУДЖЕННЯ (ФІНАЛЬНА ВЕРСІЯ З НОВИМИ СЕКЦІЯМИ)
    ========================================================================== */
 
-/* ====================== HERO СЕКЦІЯ ====================== */
+/* ====================== HERO ====================== */
 .hero {
   min-height: 100vh;
   min-height: 100dvh;
@@ -14,8 +14,8 @@
   padding: 12rem 5% 8rem;
   opacity: 0;
   transition: opacity 2s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
 }
-
 .hero.active {
   opacity: 1;
 }
@@ -26,29 +26,31 @@
   line-height: 1.1;
   letter-spacing: -1px;
 }
-
 .hero .line {
   display: block;
   color: #666;
-  transition: color 0.6s ease;
 }
 
 .hero .neon {
   color: #8b00ff;
-  text-shadow: none; /* ← тінь повністю прибрана */
-  animation: pulse-glow 4s infinite alternate;
 }
 
-@keyframes pulse-glow {
-  from {
-    text-shadow: none;
-  }
-  to {
-    text-shadow: none;
-  }
+/* МАНІФЕСТ ПІД ГЕРОЄМ */
+.manifesto {
+  margin-top: 4rem;
+  font: 600 1.35rem/2.3 "Inter", sans-serif;
+  color: #999;
+}
+.manifesto .line {
+  display: block;
+}
+.manifesto .neon {
+  color: #8b00ff;
+  font-size: 1.6rem;
+  text-shadow: 0 0 30px #8b00ff60;
 }
 
-/* Кнопка в hero — без тіні при ховері */
+/* Кнопка в hero */
 .enter-btn {
   margin-top: 3rem;
   padding: 1.6rem 4.5rem;
@@ -58,11 +60,10 @@
   border: 2px solid #555;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 .enter-btn::before {
   content: "";
   position: absolute;
@@ -76,21 +77,53 @@
   transform: translateX(-100%);
   transition: transform 0.6s;
 }
-
 .enter-btn:hover {
   color: #8b00ff;
   border-color: #8b00ff;
   background: rgba(139, 0, 255, 0.12);
   transform: translateY(-8px);
 }
-
 .enter-btn:hover::before {
   transform: translateX(100%);
 }
 
-/* ====================== КАРТКИ ШЛЯХІВ ====================== */
-/* (весь код нижче залишився без змін — тіні на картках і бейджах працюють як і раніше) */
+/* ====================== ПРОРОЦТВО ДЕВ’ЯТИ ====================== */
+.prophecy {
+  padding: 12rem 5% 10rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #0a0a0a, #111);
+}
+.section-title {
+  font: 700 2.8rem "JetBrains Mono", monospace;
+  color: #555;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+}
+.runes-large {
+  font: 700 4.5rem "Uncial Antiqua", cursive;
+  color: #333;
+  margin: 3rem 0;
+  text-shadow: 0 0 40px #000;
+}
+.prophecy-text {
+  font: 500 1.45rem/2.4 "Inter", sans-serif;
+  color: #bbb;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+}
+.prophecy-text .neon {
+  color: #8b00ff;
+  font-size: 1.9rem;
+  text-shadow: 0 0 30px #8b00ff60;
+}
+.nine-seal span {
+  font: 600 1.4rem "Inter", sans-serif;
+  color: #8b00ff;
+  text-shadow: 0 0 25px #8b00ff40;
+}
 
+/* ====================== КАРТКИ ШЛЯХІВ ====================== */
 .tracks {
   padding: 10rem 5% 8rem;
   opacity: 0;
@@ -119,50 +152,14 @@
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
-
 .track-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.track-card h3 {
-  font: 700 1.8rem "JetBrains Mono", monospace;
-  color: #8b00ff;
-  margin-bottom: 1rem;
-  transition: all 0.4s;
-}
-
-.track-card .stack {
-  color: #d4af37;
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 1.2rem 0;
-  letter-spacing: 1px;
-}
-.track-card .desc {
-  color: #aaa;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.9rem 2.4rem;
-  font: 600 1.05rem "JetBrains Mono", monospace;
-  color: #808080;
-  background: transparent;
-  border: 1px solid #555;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-}
-
-.track-card[data-path] {
-  cursor: pointer;
-}
-
-/* ====================== КОЛЬОРОВІ ТЕМИ ДЛЯ ГОЛОВНОЇ ====================== */
+/* КОЛЬОРОВІ ТЕМИ */
 .track-card[data-dominion="frontend"] {
   --accent: #8b00ff;
 }
@@ -173,35 +170,86 @@
   --accent: #ff0044;
 }
 
-.track-card h3,
-.track-card:hover .badge,
-.track-card[data-path]:hover {
-  color: var(--accent) !important;
+.track-card h3 {
+  font: 700 1.8rem "JetBrains Mono", monospace;
+  color: var(--accent);
+  margin-bottom: 1rem;
   text-shadow: 0 0 20px var(--accent);
 }
-
-.track-card .badge,
-.track-card[data-path]:hover {
+.tagline {
+  color: #bbb;
+  font-size: 1.15rem;
+  margin: 1.8rem 0 2.5rem;
+}
+.rune {
+  font: 700 5.5rem "Uncial Antiqua", cursive;
+  color: #222;
+  text-shadow: 0 0 20px var(--accent);
+  transition: all 0.7s ease;
+}
+.track-card:hover .rune {
+  color: var(--accent);
+  text-shadow: 0 0 60px var(--accent);
+  transform: scale(1.3) rotate(5deg);
+}
+.track-card:hover {
+  transform: translateY(-16px) scale(1.04);
   border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(var(--accent), 0.25);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent);
 }
 
-.track-card[data-path]:hover {
-  border-color: var(--accent);
-  box-shadow: 0 25px 60px rgba(var(--accent), 0.3),
-    0 0 0 1px rgba(var(--accent), 0.2);
+/* ====================== ТІ, ХТО ВЖЕ ПРОЙШОВ ====================== */
+.chosen {
+  padding: 10rem 5%;
+  text-align: center;
+}
+.chosen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 4rem auto 0;
+}
+.chosen-card {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+.avatar {
+  width: 90px;
+  height: 90px;
+  background: #222;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  font: 700 3rem "Uncial Antiqua", cursive;
+  color: #8b00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name {
+  color: #ccc;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+.result {
+  color: #8b00ff;
+  font-weight: 600;
 }
 
-.track-card::before {
-  background: linear-gradient(
-    135deg,
-    rgba(var(--accent), 0.1),
-    transparent 60%
-  );
+/* ====================== ФІНАЛЬНИЙ ЗАКЛИК ====================== */
+.final-call {
+  padding: 12rem 5% 15rem;
+  text-align: center;
 }
-
-.track-card:hover::before {
-  opacity: 1;
+.final-text {
+  font: 600 2.2rem/1.9 "Inter", sans-serif;
+  color: #aaa;
+}
+.final-text .neon {
+  color: #8b00ff;
+  font-size: 2.8rem;
 }
 
 /* ====================== АДАПТИВНІСТЬ ====================== */
@@ -214,10 +262,12 @@
     padding: 2.5rem 2rem;
   }
 }
-
 @media (max-width: 768px) {
-  .hero {
-    padding: 10rem 5% 6rem;
+  .hero,
+  .prophecy,
+  .chosen,
+  .final-call {
+    padding: 8rem 5%;
   }
   .hero h1 {
     font-size: clamp(3rem, 7vw, 5rem);
@@ -226,20 +276,16 @@
     padding: 1.4rem 3.5rem;
     font-size: 1.3rem;
   }
-  .tracks {
-    padding: 8rem 5% 6rem;
-  }
   .tracks-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
-  .track-card {
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 2.8rem 2rem;
+  .section-title {
+    font-size: 2.4rem;
+  }
+  .runes-large {
+    font-size: 3.8rem;
   }
 }
-
 @media (max-width: 480px) {
   .hero {
     padding: 9rem 5% 5rem;
@@ -247,30 +293,23 @@
   .hero h1 {
     font-size: 2.8rem;
   }
-  .enter-btn {
-    padding: 1.2rem 3rem;
+  .manifesto {
     font-size: 1.2rem;
   }
   .track-card {
     padding: 2.2rem 1.8rem;
   }
-  .badge {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
+  .rune {
+    font-size: 4.5rem;
   }
 }
 
+/* Повага до користувачів */
 @media (prefers-reduced-motion: reduce) {
-  .hero,
-  .tracks,
-  .track-card,
-  .enter-btn {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  .enter-btn::before,
-  .track-card::before {
-    display: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

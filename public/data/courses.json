@@ -1,0 +1,74 @@
+{
+  "frontend": [
+    {
+      "title": "Клинок Перший: Реактивний Розлом",
+      "stack": "React 19 → Zustand → Signals → Three.js + WebGL",
+      "desc": "Портфоліо, що ламає 4090. 120 FPS. 60k+ зірок.",
+      "badge": "12 тижнів",
+      "features": [
+        "3D-анімації на 120 FPS",
+        "Next-level оптимізація",
+        "Deep React Patterns"
+      ]
+    },
+    {
+      "title": "Клинок Другий: Портал Безсмертя",
+      "stack": "Next.js 15 + RSC + Edge + GSAP + Framer",
+      "desc": "Сайт-легенда. Awwwards «Site of the Year».",
+      "badge": "14 тижнів",
+      "features": [
+        "Edge streaming",
+        "GSAP mastery",
+        "Realtime transitions"
+      ]
+    }
+  ],
+  "backend": [
+    {
+      "title": "Клинок Перший: Пекельний Язик",
+      "stack": "Rust + Actix + Tokio + SQLx + WASM",
+      "desc": "API: 0.4 мс. 1M rps. Без простоїв.",
+      "badge": "10 тижнів",
+      "features": [
+        "Rust async core",
+        "WASM pipelines",
+        "High-load strategies"
+      ]
+    },
+    {
+      "title": "Клинок Другий: Тіньовий Моноліт",
+      "stack": "Node 22 + Bun + Edge + Redis + Kafka",
+      "desc": "SaaS: від 0 до $25k MRR за 90 днів.",
+      "badge": "11 тижнів",
+      "features": [
+        "Edge-ready Node",
+        "Kafka streams",
+        "Production scaling"
+      ]
+    }
+  ],
+  "fullstack": [
+    {
+      "title": "Клинок Перший: Трон Турбореакт",
+      "stack": "T3 Stack + Next.js 15 + tRPC + Prisma + Tailwind",
+      "desc": "Свій Vercel. Свій edge. Свій закон.",
+      "badge": "16 тижнів",
+      "features": [
+        "Full T3 pipeline",
+        "SSR/Edge balancing",
+        "Enterprise patterns"
+      ]
+    },
+    {
+      "title": "Клинок Другий: Закон Абсолюту",
+      "stack": "Fullstack + AI Agents + Cursor.sh + Claude",
+      "desc": "Ти не пишеш код. Ти наказуєш.",
+      "badge": "18 тижнів",
+      "features": [
+        "AI-driven dev",
+        "Agentic workflows",
+        "Hybrid architectures"
+      ]
+    }
+  ]
+}

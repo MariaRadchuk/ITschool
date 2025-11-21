@@ -238,3 +238,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Перевірка при завантаженні (якщо вже прокручено)
   toggleButton();
 });
+
+// Кнопка «УВІЙТИ В ТЕМРЯВУ» внизу — скрол до Домініонів
+const enterBtnBottom = document.getElementById('enter-btn-bottom');
+if (enterBtnBottom) {
+  enterBtnBottom.addEventListener('click', () => {
+    document.querySelector('.tracks').scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  });
+}
