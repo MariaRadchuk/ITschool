@@ -32,12 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
     }
   });
-
-     // ───────────────────────  ПЛАВНИЙ СКРОЛ ДО СЕКЦІЇ "КНИГА ТЕМРЯВИ" ───────────────────────
-  if (scrollBtn) {
-    scrollBtn.addEventListener('click', () => {
-      // прокручування до елементу з id="book-section"
-      document.getElementById('book-section').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
 });

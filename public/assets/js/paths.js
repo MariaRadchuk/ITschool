@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => altar.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
     }
   }
+  // ─────────────────────── ОБЕРИ СВІЙ ШЛЯХ ───────────────────────
+  document.getElementById('scroll-to-architects')?.addEventListener('click', () => {
+    document.querySelector('.dominions').scrollIntoView({ behavior: 'smooth' });
+  });
 
   // Клік по домініону
   document.querySelectorAll('.dominion-card').forEach(card => {
@@ -83,10 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.classList.add('active');
     setTimeout(() => toast.classList.remove('active'), 2800);
   });
-// ─────────────────────── ОБЕРИ СВІЙ ШЛЯХ ───────────────────────
-  document.getElementById('scroll-to-architects')?.addEventListener('click', () => {
-    document.querySelector('.dominions').scrollIntoView({ behavior: 'smooth' });
-  });
+
 
   // Підсвітка активного пункту меню
   document.querySelectorAll('.header-nav a, .footer-nav a').forEach(a => {
