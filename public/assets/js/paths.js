@@ -13,7 +13,6 @@ fetch('/public/data/courses.json')
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Відкриття вівтаря
   function openAltar(dominion) {
     const altar = document.getElementById(`${dominion}-altar`);
     if (altar) {
@@ -26,12 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.dominions').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Клік по домініону
   document.querySelectorAll('.dominion-card').forEach(card => {
     card.addEventListener('click', () => openAltar(card.dataset.dominion));
   });
 
-  // Закриття вівтарів
   document.querySelectorAll('.altar-close').forEach(btn => {
     btn.addEventListener('click', () => btn.closest('.altar').classList.remove('active'));
   });
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // Заповнення модалки
         document.getElementById('modal-title').textContent = data.title;
         document.getElementById('modal-stack').textContent = data.stack;
         document.getElementById('modal-desc').textContent = data.desc;
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-features').innerHTML =
           data.features.map(f => `<li>${f}</li>`).join('');
 
-        // Кольори модалки
         const modal = document.getElementById('course-modal');
         modal.classList.remove('frontend', 'backend', 'fullstack');
         modal.classList.add(dominion);
@@ -89,12 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  // Підсвітка активного пункту меню
   document.querySelectorAll('.header-nav a, .footer-nav a').forEach(a => {
     a.classList.toggle('active', a.dataset.page === 'paths');
   });
 
-  // Підтримка хешу з головної (#frontend, #backend, #fullstack)
   const hash = location.hash.slice(1);
   if (hash && ['frontend', 'backend', 'fullstack'].includes(hash)) {
     setTimeout(() => openAltar(hash), 800); 

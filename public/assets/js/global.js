@@ -6,29 +6,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (canvas) {
     const ctx = canvas.getContext('2d');
 
-    // Функція, що підганяє canvas під весь екран
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resizeCanvas();
 
-    // Адаптація при зміні розміру вікна
     window.addEventListener('resize', resizeCanvas);
 
-    // Набір рун для ефекту
     const runes = 'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟᚾᛉᛊᛏᚠᚢᚦᚨ'.split('');
     const fontSize = 18;
 
-    // Кількість колонок, залежить від ширини екрану
     let columns = Math.floor(canvas.width / fontSize);
 
-    // Висота "краплі" для кожної колонки
     const drops = Array(columns).fill(1);
 
-    // Головний цикл анімації Matrix Rain
     const drawMatrix = () => {
-      // Напівпрозорий фон для шлейф-ефекту
       ctx.fillStyle = 'rgba(128, 128, 128, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -39,21 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
 
-        // Базовий чорний символ
         ctx.fillStyle = '#000000';
         ctx.shadowColor = 'transparent';
         ctx.fillText(rune, x, y);
 
-        // Випадкове «золотисте мерехтіння» одного зі стовпчиків
         if (i % 12 === 0 && Math.random() > 0.97) {
-          ctx.fillStyle = '#D4AF37';
-          ctx.shadowColor = '#D4AF37';
+          ctx.fillStyle = '#8b00ff';
+          ctx.shadowColor = '#8b00ff';
           ctx.shadowBlur = 25;
           ctx.fillText(rune, x, y);
           ctx.shadowBlur = 0;
         }
 
-        // Скидаємо краплю в випадковому місці
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -62,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Запуск Matrix Rain кожні 50 мс
     setInterval(drawMatrix, 50);
   }
 
@@ -74,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (tracks) {
     tracks.classList.add('active');
 
-    // Плавне, поетапне показування кожної картки
     document.querySelectorAll('.track-card').forEach((card, i) => {
       setTimeout(() => card.classList.add('visible'), i * 250);
     });
@@ -107,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.classList.toggle('active');
   });
 
-    // ─────────────────────── всі посилання на сторінці виду <a href="#something"> працюють плавно ───────────────────────
+    // ─────────────────────── всі посилання на сторінці виду <a href="#something"> працюють плавно smooth───────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -136,13 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.track-card[data-path]').forEach(card => {
     card.style.cursor = 'pointer';
 
-    // Перехід на сторінку
     card.addEventListener('click', () => {
       const path = card.dataset.path;
       window.location.href = path;
     });
 
-    // Легка hover-анімація 
     card.addEventListener('mouseenter', () => {
       card.style.transform = 'translateY(-10px) scale(1.03)';
       card.style.boxShadow = '0 20px 40px rgba(139, 0, 255, 0.3)';
@@ -157,14 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─────────────────────── ПОЗНАЧЕННЯ АКТИВНОЇ СТОРІНКИ В МЕНЮ ───────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Визначаємо назву поточної сторінки
   const currentPage =
     document.body.dataset.page ||
     document.querySelector('[data-page]')?.dataset.page ||
     location.pathname.split('/').pop().replace('.html', '') ||
     'home';
 
-  // Додаємо клас .active тому пункту меню, що відповідає сторінці
   document.querySelectorAll('.header-nav a').forEach(link => {
     link.classList.remove('active');
 
@@ -183,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!scrollBtn) return;
 
-  // Показ/приховування кнопки залежно від позиції скролу
   const toggleButton = () => {
     if (window.scrollY > 500) {
       scrollBtn.classList.add('visible');
@@ -194,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', toggleButton);
 
-  // Плавний скрол нагору
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({
       top: 0,
@@ -202,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Перевірка при завантаженні (якщо вже прокручено)
   toggleButton();
 });
 
